@@ -7,13 +7,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 import requests
 import os
+from selenium.webdriver.common.by import By
 
 levels = ['地面', '925hPa', '850hPa', '700hPa', '500hPa', '200hPa', '100hPa']
 bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
 area = ['中国', '亚欧']
 
 ###################################################打开驱动浏览器软件，并打开网页#############################################
-chrome_driver = 'D:\\chromedriver_win32\\' + 'chromedriver.exe'########前面改成自己浏览器驱动器的路径
+chrome_driver = 'D:\\chromedriver_win32\\' + 'chromedriver.exe'  ########前面改成自己浏览器驱动器的路径
 # #chromedriver的文件位置
 driver = webdriver.Chrome(executable_path=chrome_driver)
 # #加载浏览器驱动
@@ -25,7 +26,7 @@ time.sleep(2)  # 休息
 for area_i in area:
     ########################################选择模块######################################################################
     ########### 模拟鼠标选择高度层
-    button1 = driver.find_element_by_link_text(area_i)
+    button1 = driver.find_element(by=By.LINK_TEXT, value=area_i)
     # 通过link文字精确定位元素
     action = ActionChains(driver).move_to_element(button1)
     # 鼠标悬停在一个元素上
@@ -37,7 +38,7 @@ for area_i in area:
     for levels_i in levels:
         ########################################选择模块##################################################################
         ########### 模拟鼠标选择高度层
-        button1 = driver.find_element_by_link_text(levels_i)
+        button1 = driver.find_element(by=By.LINK_TEXT, value=levels_i)
         # 通过link文字精确定位元素
         action = ActionChains(driver).move_to_element(button1)
         # 鼠标悬停在一个元素上
@@ -47,7 +48,7 @@ for area_i in area:
         # 注意加等待时间，避免因速度太快而失败
         ####################################################################################################################
 
-        list = driver.find_elements_by_xpath('//*[@id="mCSB_1_container"]/div')  ##存放天气图各个时刻一起的Xpath路径
+        list = driver.find_elements(by=By.XPATH, value='//*[@id="mCSB_1_container"]/div')  ##存放天气图各个时刻一起的Xpath路径
         for path in list:  ##依次读取下载存放天气图
             img_url = path.find_element_by_xpath('.').get_attribute('data-img')  # 在网页源码的同一级下 用 .
             img_name = path.find_element_by_xpath('.').get_attribute('data-img')
@@ -94,7 +95,7 @@ for area_i in area:
             page = requests.get(img_url)  #### 在链接中找到图片
             img = page.content  #### 存取二进制的图片
 
-            img_name_uppath = 'd:\\picture\\' + area_i + '\\' + levels_i + '\\' + img_name_year + '\\' + img_name_month###前面的 'd:\\picture\\'可以改成自己存放图片的路径
+            img_name_uppath = 'd:\\picture\\' + area_i + '\\' + levels_i + '\\' + img_name_year + '\\' + img_name_month  ###前面的 'd:\\picture\\'可以改成自己存放图片的路径
             if not os.path.exists(img_name_uppath):  ####创建多级目录，在不存在这个目录的情况下
                 os.makedirs(img_name_uppath)
 
