@@ -3,20 +3,26 @@
 '''
 from selenium import webdriver
 ## 导入selenium的浏览器驱动接口
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 import requests
 import os
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 
 levels = ['地面', '925hPa', '850hPa', '700hPa', '500hPa', '200hPa', '100hPa']
 bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
 area = ['中国', '亚欧']
 
 ###################################################打开驱动浏览器软件，并打开网页#############################################
-chrome_driver = 'D:\\chromedriver_win32\\' + 'chromedriver.exe'  ########前面改成自己浏览器驱动器的路径
+'''已弃用'''
+#chromedriver = 'D:\\chromedriver_win32\\' + 'chromedriver.exe'  ########前面改成自己浏览器驱动器的路径
 # #chromedriver的文件位置
-driver = webdriver.Chrome(executable_path=chrome_driver)
+#driver = webdriver.Chrome(ChromeDriverManager().install())
+'''已弃用'''
+service = Service(executable_path=ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
 # #加载浏览器驱动
 driver.get('http://www.nmc.cn/publish/observations/china/dm/weatherchart-h000.html')
 # #打开天气图页面
@@ -24,7 +30,7 @@ driver.maximize_window()
 time.sleep(2)  # 休息
 #######################################################################################################################
 for area_i in area:
-    ########################################选择模块######################################################################
+    ########################################选择模块####################################################################
     ########### 模拟鼠标选择高度层
     button1 = driver.find_element(by=By.LINK_TEXT, value=area_i)
     # 通过link文字精确定位元素
@@ -50,8 +56,8 @@ for area_i in area:
 
         list = driver.find_elements(by=By.XPATH, value='//*[@id="mCSB_1_container"]/div')  ##存放天气图各个时刻一起的Xpath路径
         for path in list:  ##依次读取下载存放天气图
-            img_url = path.find_element_by_xpath('.').get_attribute('data-img')  # 在网页源码的同一级下 用 .
-            img_name = path.find_element_by_xpath('.').get_attribute('data-img')
+            img_url = path.find_element(by=By.XPATH,value='.').get_attribute('data-img')  # 在网页源码的同一级下 用 .
+            img_name = path.find_element(by=By.XPATH,value='.').get_attribute('data-img')
 
             img_name = img_name[-37:-25]  #### 截取到日期方便后面命名存放
             img_name_year = img_name[:4]
