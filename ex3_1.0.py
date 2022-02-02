@@ -47,7 +47,10 @@ def shijianchuli(img_name):
                     img_name_day = '01'
             if img_name_month in bigmonth:
                 if int(img_name_day) > 31:
-                    img_name_month = str(int(img_name_month) + 101)[1:]
+                    if img_name_month == '12':
+                        img_name_month = '01'
+                    else:
+                        img_name_month = str(int(img_name_month) + 101)[1:]
                     img_name_day = '01'
             else:
                 if int(img_name_day) > 30:
@@ -59,7 +62,10 @@ def shijianchuli(img_name):
                     img_name_day = '01'
             if img_name_month in bigmonth:
                 if int(img_name_day) > 31:
-                    img_name_month = str(int(img_name_month) + 101)[1:]
+                    if img_name_month == '12':
+                        img_name_month = '01'
+                    else:
+                        img_name_month = str(int(img_name_month) + 101)[1:]
                     img_name_day = '01'
             else:
                 if int(img_name_day) > 30:

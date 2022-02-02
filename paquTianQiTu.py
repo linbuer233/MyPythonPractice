@@ -18,9 +18,9 @@ area = ['中国', '亚欧']
 
 ###################################################打开驱动浏览器软件，并打开网页#############################################
 '''已弃用'''
-#chromedriver = 'D:\\chromedriver_win32\\' + 'chromedriver.exe'  ########前面改成自己浏览器驱动器的路径
+# chromedriver = 'D:\\chromedriver_win32\\' + 'chromedriver.exe'  ########前面改成自己浏览器驱动器的路径
 # #chromedriver的文件位置
-#driver = webdriver.Chrome(ChromeDriverManager().install())
+# driver = webdriver.Chrome(ChromeDriverManager().install())
 '''已弃用'''
 service = Service(executable_path=ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
@@ -57,8 +57,8 @@ for area_i in area:
 
         list = driver.find_elements(by=By.XPATH, value='//*[@id="mCSB_1_container"]/div')  ##存放天气图各个时刻一起的Xpath路径
         for path in list:  ##依次读取下载存放天气图
-            img_url = path.find_element(by=By.XPATH,value='.').get_attribute('data-img')  # 在网页源码的同一级下 用 .
-            img_name = path.find_element(by=By.XPATH,value='.').get_attribute('data-img')
+            img_url = path.find_element(by=By.XPATH, value='.').get_attribute('data-img')  # 在网页源码的同一级下 用 .
+            img_name = path.find_element(by=By.XPATH, value='.').get_attribute('data-img')
 
             img_name = img_name[-37:-25]  #### 截取到日期方便后面命名存放
             img_name_year = img_name[:4]
@@ -78,7 +78,10 @@ for area_i in area:
                             img_name_day = '01'
                     if img_name_month in bigmonth:
                         if int(img_name_day) > 31:
-                            img_name_month = str(int(img_name_month) + 101)[1:]
+                            if img_name_month == '12':
+                                img_name_month = '01'
+                            else:
+                                img_name_month = str(int(img_name_month) + 101)[1:]
                             img_name_day = '01'
                     else:
                         if int(img_name_day) > 30:
@@ -90,7 +93,10 @@ for area_i in area:
                             img_name_day = '01'
                     if img_name_month in bigmonth:
                         if int(img_name_day) > 31:
-                            img_name_month = str(int(img_name_month) + 101)[1:]
+                            if img_name_month == '12':
+                                img_name_month = '01'
+                            else:
+                                img_name_month = str(int(img_name_month) + 101)[1:]
                             img_name_day = '01'
                     else:
                         if int(img_name_day) > 30:
