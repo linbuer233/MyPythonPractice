@@ -107,7 +107,9 @@ for area_i in area:
 
             page = requests.get(img_url)  #### 在链接中找到图片
             img = page.content  #### 存取二进制的图片
-
+            '''
+            你存放文件的路径
+            '''
             img_name_uppath = 'd:\\picture\\' + area_i + '\\' + levels_i + '\\' + img_name_year + '\\' + img_name_month  ###前面的 'd:\\picture\\'可以改成自己存放图片的路径
             if not os.path.exists(img_name_uppath):  ####创建多级目录，在不存在这个目录的情况下
                 os.makedirs(img_name_uppath)
