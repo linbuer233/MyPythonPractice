@@ -1,13 +1,14 @@
 '''
 实现在中央气象台批量下载天气图，并分类存放在各自文件夹中
 '''
+import os
+import time
+
+import requests
 from selenium import webdriver
 ## 导入selenium的浏览器驱动接口
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.action_chains import ActionChains
-import time
-import requests
-import os
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -77,11 +78,11 @@ for area_i in area:
                             img_name_day = '01'
                     if img_name_month in bigmonth:
                         if int(img_name_day) > 31:
-                            img_name_month = str(int(img_name_month) + 1)
+                            img_name_month = str(int(img_name_month) + 101)[1:]
                             img_name_day = '01'
                     else:
                         if int(img_name_day) > 30:
-                            img_name_month = str(int(img_name_month) + 1)
+                            img_name_month = str(int(img_name_month) + 101)[1:]
                             img_name_day = '01'
                 else:
                     if img_name_month == '02':
@@ -89,11 +90,11 @@ for area_i in area:
                             img_name_day = '01'
                     if img_name_month in bigmonth:
                         if int(img_name_day) > 31:
-                            img_name_month = str(int(img_name_month) + 1)
+                            img_name_month = str(int(img_name_month) + 101)[1:]
                             img_name_day = '01'
                     else:
                         if int(img_name_day) > 30:
-                            img_name_month = str(int(img_name_month) + 1)
+                            img_name_month = str(int(img_name_month) + 101)[1:]
                             img_name_day = '01'
             else:
                 img_name_hour = img_name_hour[1:5]
