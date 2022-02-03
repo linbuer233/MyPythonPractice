@@ -19,11 +19,6 @@ bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
 area = ['中国', '亚欧']
 
 ###################################################打开驱动浏览器软件，并打开网页#############################################
-'''已弃用'''
-# chromedriver = 'D:\\chromedriver_win32\\' + 'chromedriver.exe'  ########前面改成自己浏览器驱动器的路径
-# #chromedriver的文件位置
-# driver = webdriver.Chrome(ChromeDriverManager().install())
-'''已弃用'''
 try:
     with open('PaquTianqiTu_config.txt', 'r') as f:
         f = open('PaquTianqiTu_config.txt', 'r')
@@ -32,7 +27,6 @@ try:
         f = open(path, 'r')
         webnum = f.readline()[:-1]
         picturepath = f.readline()
-        print(webnum, picturepath, len(webnum), len(picturepath))
 except:
     print("第一次使用吗？Y/n")
     while True:
