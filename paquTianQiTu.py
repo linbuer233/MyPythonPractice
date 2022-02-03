@@ -11,6 +11,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 levels = ['地面', '925hPa', '850hPa', '700hPa', '500hPa', '200hPa', '100hPa']
 bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
@@ -22,8 +24,92 @@ area = ['中国', '亚欧']
 # #chromedriver的文件位置
 # driver = webdriver.Chrome(ChromeDriverManager().install())
 '''已弃用'''
-service = Service(executable_path=ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service)
+try:
+    with open('PaquTianqiTu_config.txt', 'r') as f:
+        f = open('PaquTianqiTu_config.txt', 'r')
+        path = f.readline()
+        f.close()
+        f = open(path, 'r')
+        webnum = f.readline()[:-1]
+        picturepath = f.readline()
+        print(webnum, picturepath, len(webnum), len(picturepath))
+except:
+    print("第一次使用吗？Y/n")
+    while True:
+        a = input()
+        if a == 'n' or a == 'N' or a == 'no' or a == 'No':
+            print('找不到程序配置文件，需遵守下面的操作重新配置。')
+            break
+        if a == 'Y' or a == 'y' or a == 'yes' or a == 'Yes':
+            print('请遵守下面的操作开始配置。')
+            break
+        print('输入错误，请重新输入。')
+    print('①请输入配置文件所需在的路径(格式为: d:\\path\\path1)。')
+    print('ps:尽量不要选择C盘下的路径，除非确保有权限在C盘写入文件。')
+    while True:
+        inputpath = input()
+        configpath = inputpath + '\\' + 'PaquTianqiTu_config.txt'
+        if inputpath[1:3] != ':\\':
+            print(inputpath[1:3])
+            print("输入错误，注意格式为: d:\\path\\path1")
+            continue
+        try:
+            if not os.path.exists(inputpath):
+                os.makedirs(inputpath)
+            f = open(configpath, 'w')
+            f.close()
+            break
+        except:
+            print("输入错误，注意格式为: d:\\path\\path1")
+    print('\n')
+    print('②输入你所使用的浏览器，输入序号即可')
+    print('Edge(微软自带)\t1')
+    print('FireFox(火狐)\t2')
+    print('Chrome(谷歌)\t3')
+    while True:
+        webnumber = input()
+        if webnumber == '1' or webnumber == '2' or webnumber == '3':
+            break
+        print("输入错误，请输入阿拉伯数字")
+    print('\n')
+    print('③输入图片的存放路径')
+    print('注意格式与上面的路径一样')
+    while True:
+        picturepath = input()
+        if picturepath[1:3] != ':\\':
+            print(picturepath[1:3])
+            print('输入错误，请重新输入。')
+            continue
+        try:
+            os.makedirs(picturepath)
+            f = open(picturepath + '\\' + 'hh.txt', 'w')
+            f.close()
+            os.remove(picturepath + '\\' + 'hh.txt')
+            break
+        except:
+            print('输入错误，请重新输入。')
+    print('\n')
+    f = open("PaquTianqiTu_config.txt", 'w')
+    f.write(configpath)
+    f.close()
+    f = open(configpath, 'w')
+    f.write(webnumber)
+    f.write('\n')
+    f.write(picturepath)
+    f.close()
+    print('配置结束，谢谢 ^_^ ')
+if webnum == '1':
+    # Edge
+    service = Service(executable_path=EdgeChromiumDriverManager().install())
+    driver = webdriver.Edge(service=service)
+if webnum == '2':
+    # FireFox
+    service = Service(executable_path=GeckoDriverManager().install())
+    driver = webdriver.Firefox(service=service)
+if webnum == '3':
+    # Chrome
+    service = Service(executable_path=ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service)
 # #加载浏览器驱动
 driver.get('http://www.nmc.cn/publish/observations/china/dm/weatherchart-h000.html')
 # #打开天气图页面
@@ -110,7 +196,7 @@ for area_i in area:
             '''
             你存放文件的路径
             '''
-            img_name_uppath = 'd:\\picture\\' + area_i + '\\' + levels_i + '\\' + img_name_year + '\\' + img_name_month  ###前面的 'd:\\picture\\'可以改成自己存放图片的路径
+            img_name_uppath = picturepath + '\\' + area_i + '\\' + levels_i + '\\' + img_name_year + '\\' + img_name_month  ###前面的 'd:\\picture\\'可以改成自己存放图片的路径
             if not os.path.exists(img_name_uppath):  ####创建多级目录，在不存在这个目录的情况下
                 os.makedirs(img_name_uppath)
 
