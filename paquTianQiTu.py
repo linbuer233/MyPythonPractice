@@ -14,10 +14,17 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
-levels = ['地面', '925hPa', '850hPa', '700hPa', '500hPa', '200hPa', '100hPa']
-bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
-area = ['中国', '亚欧']
 
+bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
+levels = ['/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[1]/a',
+          '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[2]/a',
+          '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[3]/a',
+          '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[4]/a',
+          '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[5]/a',
+          '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[6]/a',
+          '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[7]/a']
+area = ['/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/ul/li[1]/a',
+        '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/ul/li[2]/a']
 ###################################################打开驱动浏览器软件，并打开网页#############################################
 try:
     with open('PaquTianqiTu_config.txt', 'r') as a:
@@ -112,7 +119,7 @@ time.sleep(2)  # 休息
 for area_i in area:
     ########################################选择模块####################################################################
     ########### 模拟鼠标选择高度层
-    button1 = driver.find_element(by=By.LINK_TEXT, value=area_i)
+    button1 = driver.find_element(by=By.XPATH, value=area_i)
     # 通过link文字精确定位元素
     action = ActionChains(driver).move_to_element(button1)
     # 鼠标悬停在一个元素上
@@ -124,7 +131,7 @@ for area_i in area:
     for levels_i in levels:
         ########################################选择模块##################################################################
         ########### 模拟鼠标选择高度层
-        button1 = driver.find_element(by=By.LINK_TEXT, value=levels_i)
+        button1 = driver.find_element(by=By.XPATH, value=levels_i)
         # 通过link文字精确定位元素
         action = ActionChains(driver).move_to_element(button1)
         # 鼠标悬停在一个元素上
