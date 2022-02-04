@@ -104,7 +104,7 @@ if webnum == '3':
     service = Service(executable_path=ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
 # #加载浏览器驱动
-driver.get('http://www.nmc.cn/publish/observations/china/dm/weatherchart-h000.html')
+driver.get('http://www.nmc.cn/publish/observations/china/dm/weatherchart-h000.htm')
 # #打开天气图页面
 driver.maximize_window()
 time.sleep(2)  # 休息
