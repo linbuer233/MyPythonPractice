@@ -20,7 +20,7 @@ area = ['中国', '亚欧']
 
 ###################################################打开驱动浏览器软件，并打开网页#############################################
 try:
-    with open('PaquTianqiTu_config.txt', 'r') as f:
+    with open('PaquTianqiTu_config.txt', 'r') as a:
         f = open('PaquTianqiTu_config.txt', 'r')
         path = f.readline()
         f.close()
@@ -44,7 +44,6 @@ except:
         inputpath = input()
         configpath = inputpath + '\\' + 'PaquTianqiTu_config.txt'
         if inputpath[1:3] != ':\\':
-            print(inputpath[1:3])
             print("输入错误，注意格式为: d:\\path\\path1")
             continue
         try:
@@ -71,11 +70,11 @@ except:
     while True:
         picturepath = input()
         if picturepath[1:3] != ':\\':
-            print(picturepath[1:3])
             print('输入错误，请重新输入。')
             continue
         try:
-            os.makedirs(picturepath)
+            if not os.path.exists(picturepath):
+                os.makedirs(picturepath)
             f = open(picturepath + '\\' + 'hh.txt', 'w')
             f.close()
             os.remove(picturepath + '\\' + 'hh.txt')
