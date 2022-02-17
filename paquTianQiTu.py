@@ -14,7 +14,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
-
 bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
 levels = ['/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[1]/a',
           '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[2]/a',
@@ -23,8 +22,10 @@ levels = ['/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[1]/a',
           '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[5]/a',
           '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[6]/a',
           '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[2]/ul/li[7]/a']
+levels1 = ['地面', '925hPa', '850hPa', '700hPa', '500hPa', '200hPa', '100hPa']
 area = ['/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/ul/li[1]/a',
         '/html/body/div[2]/div/div[2]/div[1]/div[1]/div[1]/ul/li[2]/a']
+area1=['中国','亚欧']
 ###################################################打开驱动浏览器软件，并打开网页#############################################
 try:
     with open('PaquTianqiTu_config.txt', 'r') as a:
@@ -196,7 +197,7 @@ for area_i in area:
             '''
             你存放文件的路径
             '''
-            img_name_uppath = picturepath + '\\' + area_i + '\\' + levels_i + '\\' + img_name_year + '\\' + img_name_month  ###前面的 'd:\\picture\\'可以改成自己存放图片的路径
+            img_name_uppath = picturepath + '\\' + area1[area.index(area_i)] + '\\' + levels1[levels.index(levels_i)] + '\\' + img_name_year + '\\' + img_name_month  ###前面的 'd:\\picture\\'可以改成自己存放图片的路径
             if not os.path.exists(img_name_uppath):  ####创建多级目录，在不存在这个目录的情况下
                 os.makedirs(img_name_uppath)
 
