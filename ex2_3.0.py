@@ -1,9 +1,10 @@
+from math import *
+
+import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
 import numpy as np  # 调用numpy
 import pandas as pd
 import xarray as xr
-from math import *
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
 from cartopy.io.shapereader import Reader
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 
@@ -36,6 +37,9 @@ def createmap():
     ############################################################################################################
     return ax, fig
 
+
+ax, fig = createmap()
+fig.show()
 
 upfrist = ['air', 'hgt', 'uv']
 var = ['air', 'hgt', 'u', 'v']
