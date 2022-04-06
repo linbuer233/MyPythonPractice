@@ -17,7 +17,6 @@ print(dy)
 result = dy.subs({x: 1, y: 2})
 print(result)
 
-
 # subs函数可以将算式中的符号进行替换，它有3种调用方式：
 # expression.subs(x, y) : 将算式中的x替换成y
 # expression.subs({x:y,u:v}) : 使用字典进行多次替换

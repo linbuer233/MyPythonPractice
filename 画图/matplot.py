@@ -1,9 +1,12 @@
+from math import *
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
 import numpy as np  # 调用numpy
 import pandas as pd
 import xarray as xr
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
+from cartopy.io.shapereader import Reader
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 
 plt.rcParams['font.sans-serif'] = ['SimHei']  ###防止无法显示中文并设置黑体
@@ -37,27 +40,11 @@ def createmap():
     lat_formatter = LatitudeFormatter()
     ax.xaxis.set_major_formatter(lon_formatter)
     ax.yaxis.set_major_formatter(lat_formatter)
+    plt.text(104, 36, '+', color='r', size=12)
+    ax.add_geometries(Reader('D:\\maplist\\China_province\\bou2_4l.shp').geometries(), ccrs.PlateCarree(),
+                      facecolor='none', edgecolor='gray', linewidth=0.8)
+    return ax, fig
 
-    return ax,fig
-ax,fig=createmap()
-###绘制500hPa温压场
-###读取数据
-plot_air_500 = air_hgt_500['air'][0, 5, :, :]
-plot_hgt_500 = air_hgt_500['hgt'][0, 5, :, :]
 
-air_levels = np.arange(-100, 20, 4)  # 设置等值线间隔
-hgt_levels = np.arange(400, 600, 4)
-#
-denghgtlines = ax.contour(lons[0:28, 0:44], lats[0:28, 0:44], plot_hgt_500[0:28, 0:44], levels=hgt_levels,
-                          colors='mediumblue', linewidths=0.8)
-
-plt.clabel(denghgtlines, inline=True, fontsize=8, fmt='%.0f')
-dengairlines = ax.contour(lons[0:28, 0:44], lats[0:28, 0:44], plot_air_500[0:28, 0:44], levels=air_levels,
-                          colors='red', linewidths=0.8, linestyles='-')
-plt.clabel(dengairlines, inline=True, fontsize=8, fmt='%.0f')
-ax.set_title('2021-05-20 00时500hPa温压场', fontsize=12)
-
-gl = ax.gridlines()  ##生成网格线
-ax.grid()
-plt.tight_layout()
+ax, fig = createmap()
 plt.show()

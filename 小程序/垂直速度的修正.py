@@ -1,10 +1,10 @@
-import xarray as xr
-import numpy as np
-import metpy.calc as mpcalc
-from metpy.units import units
 import matplotlib.pyplot as plt
-from matplotlib.ticker import *
+import metpy.calc as mpcalc
+import numpy as np
+import xarray as xr
 from cartopy.mpl.ticker import LongitudeFormatter
+from matplotlib.ticker import *
+from metpy.units import units
 
 #################################################################################################
 all_vars = xr.open_dataset('D:\\python\\tianzhen\\shixi2\\all.nc')

@@ -1,11 +1,12 @@
-from scipy import stats
-from xgrads import *
+from math import *
+
+import cartopy.crs as ccrs
+import matplotlib.pyplot as plt
 import numpy as np  # 调用numpy
 import xarray as xr
-from math import *
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
+from scipy import stats
+from xgrads import *
 
 
 def createmap():

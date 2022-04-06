@@ -1,7 +1,8 @@
-from xgrads import *
 from math import *
+
 import numpy as np
 import xarray as xr
+from xgrads import *
 
 ############把NCEP_slp_30y_Wt转换成nc文件#############
 slp = open_CtlDataset('D:\\grads\\TongJi\\NCEP_slp_30y_Wt.ctl')

@@ -206,4 +206,3 @@ for area_i in area:
             with open(img_name_path, mode='wb') as f:
                 f.write(img)
         end = time.time()
-

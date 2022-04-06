@@ -66,6 +66,8 @@ def coulist1(newdf, string):
 """
 随机生成，如果已经存在，再重新生成一个，直到没有或满
 """
+
+
 def coulist(num, st, end):
     coulist = []
     count = 0

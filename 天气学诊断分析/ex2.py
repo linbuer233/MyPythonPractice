@@ -1,6 +1,7 @@
-import numpy as np  # 调用numpy
 from math import exp
+
 import netCDF4 as nc
+import numpy as np  # 调用numpy
 import pandas as pd
 
 upfrist = ['air', 'hgt', 'uv']
@@ -22,7 +23,7 @@ for k in upfrist:
                 for bb in range(4):  # 提前读取，跳过前四行
                     b = f.readline()
 
-                for y_i in range(28,-1,-1):
+                for y_i in range(28, -1, -1):
                     x_i = 0
 
                     for bbb in range(5):
@@ -42,7 +43,7 @@ for k in upfrist:
                 for bb in range(3):
                     b = f.readline()
                 for var_i in range(2, 4):
-                    for y_i in range(28,-1,-1):
+                    for y_i in range(28, -1, -1):
                         x_i = 0  # 数据纬向存储（按列）
 
                         for bbb in range(5):
@@ -58,14 +59,12 @@ for k in upfrist:
                                 x_i += 1
                                 if x_i == 45:
                                     break
-print(a[0,0,0,0,0])
+print(a[0, 0, 0, 0, 0])
 ##############################创建nc文件
 f_w = nc.Dataset('D:\\python\\tianzhen\\shixi2\\al.nc', 'w', format('NETCDF4'))
 
-
 ###创建一个组容纳所有变量
 all_var = f_w.createGroup('shixi')
-
 
 # 定义维度
 f_w.createDimension('time', 17)
@@ -74,7 +73,7 @@ f_w.createDimension('lat', 29)
 f_w.createDimension('lon', 45)
 
 # 给维度设置
-f_w.createVariable('time','f', 'time')
+f_w.createVariable('time', 'f', 'time')
 f_w.createVariable('level', np.int32, 'level')
 f_w.createVariable('lat', np.float32, 'lat')
 f_w.createVariable('lon', np.float32, 'lon')
@@ -82,7 +81,7 @@ f_w.createVariable('lon', np.float32, 'lon')
 # time = np.array([2021052000, 2021052006, 2021052012, 2021052018, 2021052100, 2021052106, 2021052112,
 #                   2021052118, 2021052200, 2021052206, 2021052212, 2021052218, 2021052300, 2021052306,
 #                   2021052312, 2021052318, 2021052400])
-time=pd.date_range(start='20210520',end='20210524',periods=17)
+time = pd.date_range(start='20210520', end='20210524', periods=17)
 # time= np.arange(17)
 level = np.array([1000, 925, 850, 700, 600, 500])
 lat = np.linspace(10, 81, 29)
@@ -112,5 +111,3 @@ all_var.variables['air'][:] = a[0, :, :, :, :]
 
 all_var.close
 f_w.close()
-
-

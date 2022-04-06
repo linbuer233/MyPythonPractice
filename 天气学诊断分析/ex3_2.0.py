@@ -8,18 +8,19 @@
 '''
 ########需要用到的模块
 import os
+from math import *
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
+import metpy.calc as mpcalc
 import numpy as np  # 调用numpy
 import pandas as pd
 import xarray as xr
-from math import *
-import metpy.calc as mpcalc
-from metpy.units import units
-import matplotlib.pyplot as plt
-import matplotlib.ticker as mticker
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 from cartopy.io.shapereader import Reader
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+from metpy.units import units
 
 plt.rcParams['font.sans-serif'] = ['SimHei']  ###防止无法显示中文并设置黑体
 plt.rcParams['axes.unicode_minus'] = False  ###用来正常显示负号

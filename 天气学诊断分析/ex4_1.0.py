@@ -6,21 +6,22 @@
 2021/11/7
 '''
 import os
+from math import *
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
+import metpy.calc as mpcalc
 import metpy.constants
+import metpy.constants as constants
 import numpy as np  # 调用numpy
 import pandas as pd
 import xarray as xr
-from math import *
-import metpy.calc as mpcalc
-from metpy.units import units
-import metpy.constants as constants
-import matplotlib.pyplot as plt
-import matplotlib.ticker as mticker
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 from cartopy.io.shapereader import Reader
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
+from metpy.units import units
 
 
 def createmap():
@@ -45,6 +46,7 @@ def createmap():
     ax.set_extent([60, 135, 10, 70], ccrs.PlateCarree())  ## 调整图片大小在画布中
 
     return ax, fig
+
 
 shi_han_shu = np.load(r'D:\python\tianzhen\shixi3_4\势函数.npy')
 c = np.zeros((24, 12, 29, 73))

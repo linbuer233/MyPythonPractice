@@ -1,12 +1,13 @@
 '''
 实现在中央气象台批量下载卫星云图，并存放在各自文件夹中
 '''
+import os
+import time
+
+import requests
 from selenium import webdriver
 ## 导入selenium的浏览器驱动接口
 from selenium.webdriver.common.action_chains import ActionChains
-import time
-import requests
-import os
 
 lei = ['FY4A红外', 'FY4A可见光', 'FY4A水汽']
 bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
@@ -44,7 +45,7 @@ for lei_i in lei:
         img_name_day = img_name[6:8]
         img_name_hour = str(int(img_name[8:12]) + 10800)  ###转换成北京时间并且为了小时分钟显示0000这样的格式，加了10800，后面再截取
 
-#######对日期的处理，有些加了八小时变成北京时间之后，日期会发生改变，下面就是对日期在闰年、非闰年，大小月等情况时的处理
+        #######对日期的处理，有些加了八小时变成北京时间之后，日期会发生改变，下面就是对日期在闰年、非闰年，大小月等情况时的处理
         if int(img_name_hour) > 12400:
             img_name_day = str(int(img_name_day) + 101)
             img_name_day = img_name_day[1:3]

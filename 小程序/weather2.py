@@ -1,6 +1,6 @@
-import urllib.request
 import gzip
 import json
+import urllib.request
 
 print('------天气查询------')
 
@@ -51,4 +51,4 @@ def show_weather(weather_data):
 
 
 show_weather(get_weather_data())
-#print(get_weather_data())
+# print(get_weather_data())

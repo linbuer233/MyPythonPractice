@@ -1,10 +1,12 @@
 import os
 
-# 遍历文件 利用os的walk函数实现
-
 import numpy as np
 
-level=[]
+# 遍历文件 利用os的walk函数实现
+
+level = []
+
+
 def walkFile(file):
     for root, dirs, files in os.walk(file):
         # root 表示正在访问的文件夹路径
@@ -34,10 +36,10 @@ def walkFile(file):
         #     print(os.path.join(root, f))
         ###遍历所有文件夹
         level.append(dirs)
-        print(len(dirs),level)
+        print(len(dirs), level)
         for d in dirs:
             # print(os.path.join(root, d))
-            a=os.listdir(os.path.join(root,d))
+            a = os.listdir(os.path.join(root, d))
             for i in a:
                 a[a.index(i)] = i[:-4]
 
@@ -48,6 +50,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-level_a=np.array(level)
+level_a = np.array(level)
 print(len(level))
 print(level[0])

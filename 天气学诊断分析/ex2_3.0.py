@@ -272,8 +272,8 @@ plt.rcParams['font.sans-serif'] = ['SimHei']  ###防止无法显示中文并设�
 air_hgt = xr.open_dataset('D:\\python\\tianzhen\\shixi2\\all.nc')
 lat = air_hgt['lat'][:]
 lon = air_hgt['lon'][:]
-uwind=air_hgt['u'][0,5,:,:]
-vwind=air_hgt['v'][0,5,:,:]
+uwind = air_hgt['u'][0, 5, :, :]
+vwind = air_hgt['v'][0, 5, :, :]
 lons, lats = np.meshgrid(lon, lat)  # 后面画图数据对应
 
 ##绘制500hPa温压场 17个时刻
@@ -291,7 +291,7 @@ for t_i in second:
     plt.clabel(denghgtlines, inline=True, fontsize=8, fmt='%.0f')
     dengairlines = ax.contour(lons[0:28, 0:44], lats[0:28, 0:44], plot_air_500[0:28, 0:44], levels=air_levels,
                               colors='red', linewidths=0.8)  #
-    plt.clabel(dengairlines, inline=True, fontsize=8, fmt='%.0f')####在等值线上标注数值
+    plt.clabel(dengairlines, inline=True, fontsize=8, fmt='%.0f')  ####在等值线上标注数值
 
     titlename = t_i + '时500hPa温压场'  #
     ax.set_title(titlename, fontsize=12)
