@@ -12,5 +12,5 @@ for i in b[2:]:
         if j == " ":
             end = i.index(j)
             break
-    command = "pip install " + i[0:end] + " -U"
+    command = "pip install --upgrade" + i[0:end] + " -U"
     os.system(command)
