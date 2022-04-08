@@ -1,3 +1,9 @@
+'''
+实现连校园网
+1.打开wifi
+2.登陆校园网
+'''
+
 import os
 import time
 
@@ -14,7 +20,7 @@ data = {
     "duration": "0",
     "outport": "中国移动",  #
     "totaltimespan": "0",
-    "usripadd": "10.0.204.92"
+    "usripadd": "10.0.204.91"
 }
 
 data1 = {
