@@ -11,7 +11,7 @@
 
 import pandas as pd
 
-with open("rmm.74toRealtime.txt", 'r') as f:
+with open("../../data/rmm.74toRealtime.txt", 'r') as f:
     f.readline()
     f.readline()
     rmm = f.readlines()
@@ -41,5 +41,5 @@ for i in rmm:
     rmmall.append(dict)
 
 df = pd.DataFrame.from_dict(rmmall[:])
-df.to_csv('pythonhomework6csv.csv')
-df.to_excel('pythonhomework6excel.xlsx')
+df.to_csv('../../data/pythonhomework6csv.csv')
+df.to_excel('../../data/pythonhomework6excel.xlsx')
