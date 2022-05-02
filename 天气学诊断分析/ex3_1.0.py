@@ -184,7 +184,7 @@ for var_i in wenjian:
         hgt_t_data_array = hgt_t_data_array.reshape(hgt_t_uv.shape[1], hgt_t_uv.shape[2], NY, NX)
         hgt_t_data_array = hgt_t_data_array[::-1, :, ::-1, :]  ###反转高度轴和维度轴
         hgt_t_uv[wenjian.index(var_i), :, :, :, :] = hgt_t_data_array
-
+print(wenjian_timename)
 ###################################################存放到nc文件中#########################################################
 starttime = wenjian_timename[0]
 starttime = starttime[:-2]
@@ -686,7 +686,6 @@ for time_i in range(len(time)):
 
 '''
 '''
-分别绘制在32.5-35N内平均850hPa水汽通量，水汽通量的风场散度项和水汽通量的水汽平流项的经度-时间剖面图
 （时间从2021年7月19日-22日18时，经度从100-125E）
 '''
 '''
