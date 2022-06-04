@@ -1,1 +1,2 @@
 D:\picture\PaquTianqiTu_config.txt
+“helloworld”
