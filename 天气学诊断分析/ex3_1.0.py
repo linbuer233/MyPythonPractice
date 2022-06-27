@@ -149,7 +149,13 @@ for var_i in wenjian:
         b = list(np.sort(a))  #####排序，从小到大
         for i in b:
             dirs[b.index(i)] = str(int(i))
-
+        """
+        通过改变dirs里值的顺序，进而改root值
+        dirs / root / files
+        ['100', '150', '200', '250', '300', '400', '500', '600', '700', '850', '925', '1000'] D:\python\\tianzhen\shixi3_4\data\hgt []
+        [] D:\python\\tianzhen\shixi3_4\data\hgt\\100 ['2021071700.txt', 。。。。]
+        [] D:\python\\tianzhen\shixi3_4\data\hgt\\150 
+        """
         if var_i == 'uv':
             for f in files:
                 data = pd.read_csv(os.path.join(root, f), skiprows=3, header=None, sep='\s+')
