@@ -1,7 +1,6 @@
 import os 
 import glob
-import filecmp
-
+import filecmp # 判断文件是否相同
 benpath=os.getcwd()
 benfile=glob.glob(benpath+'\\*\\*')+os.listdir()
 aimfile=os.listdir("D:\\WORKcode\\pythoncode\\python_practice\\台风相关绘图")
