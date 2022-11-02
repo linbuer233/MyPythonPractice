@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import numpy as np  # 调用numpy
 import xarray as xr
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
-from scipy import stats
 from xgrads import *
 
 

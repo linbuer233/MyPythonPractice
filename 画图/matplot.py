@@ -1,10 +1,6 @@
-from math import *
-
 import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
 import numpy as np  # 调用numpy
-import pandas as pd
 import xarray as xr
 from cartopy.io.shapereader import Reader
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter

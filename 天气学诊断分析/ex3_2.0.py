@@ -8,7 +8,6 @@
 '''
 ########需要用到的模块
 import os
-from math import *
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature

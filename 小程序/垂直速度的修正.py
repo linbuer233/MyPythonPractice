@@ -3,7 +3,6 @@ import metpy.calc as mpcalc
 import numpy as np
 import xarray as xr
 from cartopy.mpl.ticker import LongitudeFormatter
-from matplotlib.ticker import *
 from metpy.units import units
 
 #################################################################################################

@@ -1,12 +1,10 @@
 from math import *
 
 import cartopy.crs as ccrs
-import cartopy.feature as cfeat
 import matplotlib.pyplot as plt
 import numpy as np  # 调用numpy
 import pandas as pd
 import xarray as xr
-from cartopy.io.shapereader import Reader
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 
 
@@ -137,7 +135,7 @@ for time in range(17):
                     (a[1, time, 5, j, i + 1] + a[1, time, 5, j, i - 1] - 2 * a[1, time, 5, j, i]) / (
                     dx ** 2 * cos((10 + dy * j) * pi / 180) ** 2) + (a[1, time, 5, j + 1, i] + a[1, time, 5, j - 1, i]
                                                                      - 2 * a[1, time, 5, j, i]) / (dy ** 2) - (
-                                a[1, time, 5, j + 1, i] - a[1, time, 5, j - 1, i])
+                            a[1, time, 5, j + 1, i] - a[1, time, 5, j - 1, i])
                     * tan((10 + dy * j) * pi / 180) / (2 * dy))  # 计算公式
 ###实测风涡度
 mwv_500 = np.full((17, 29, 45), -9.99 * exp(-6))  # 每一时次的实测风涡度

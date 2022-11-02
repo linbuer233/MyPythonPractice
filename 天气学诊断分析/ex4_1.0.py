@@ -5,8 +5,6 @@
 （3）水汽流函数和水汽势函数。
 2021/11/7
 '''
-import os
-from math import *
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -14,14 +12,10 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import metpy.calc as mpcalc
 import metpy.constants
-import metpy.constants as constants
 import numpy as np  # 调用numpy
 import pandas as pd
-import xarray as xr
 from cartopy.io.shapereader import Reader
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
-from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
-from metpy.units import units
 
 
 def createmap():

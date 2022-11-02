@@ -13,7 +13,6 @@ print('连接中')
 from selenium import webdriver
 ## 导入selenium的浏览器驱动接口
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -25,7 +24,8 @@ driver.get('https://www.baidu.com/')
 time.sleep(2)
 # /html/body/div[1]/div[2]/div[5]/div[1]/div/form/span[1]/input//*[@id="kw"]
 # /html/body/div[1]/div[1]/div[5]/div/div/form/span[1]/input
-driver.find_element(by=By.XPATH,value="/html/body/div[1]/div[2]/div[5]/div[1]/div/form/span[1]/input").get_attribute("id").send_keys("hh")
+driver.find_element(by=By.XPATH, value="/html/body/div[1]/div[2]/div[5]/div[1]/div/form/span[1]/input").get_attribute(
+    "id").send_keys("hh")
 # driver.find_element(by=By.XPATH,value='/html/body/div/div/div[2]/div[1]/form/div/div[1]/div/div/span/span/input').send_keys("18705160127")
 time.sleep(2)
 # input.send_keys("18705160127")

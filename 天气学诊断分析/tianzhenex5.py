@@ -13,7 +13,6 @@ import pandas as pd
 import xarray as xr
 from cartopy.io.shapereader import Reader
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
-from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 from metpy.units import units
 
 plt.rcParams['font.sans-serif'] = ['SimHei']  ###防止无法显示中文并设置黑体

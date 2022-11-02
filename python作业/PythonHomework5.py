@@ -152,7 +152,8 @@ if __name__ == '__main__':
     df = pd.DataFrame({'姓名': name, '前五个数字': f5, '后两个数字': b2})
     df = df.dropna()  # 去除Nan值
     ## 去除nan值之后，重置顺序
-    df = pd.DataFrame({'姓名': list(df['姓名']), '前五个数字': list(df['前五个数字']), '后两个数字': list(df['后两个数字'])})
+    df = pd.DataFrame(
+        {'姓名': list(df['姓名']), '前五个数字': list(df['前五个数字']), '后两个数字': list(df['后两个数字'])})
 
     # 去除那些数字的不够的同学
     droplist5 = TFfun(df, '前五个数字', 4)
