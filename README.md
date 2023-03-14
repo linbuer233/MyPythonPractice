@@ -3,121 +3,99 @@
 
 **项目结构**
 
-```txt
-│  .gitignore
-│  daskarray2_0.ipynb
-│  gitph.bat
-│  julia_in_python.py
-│  LICENSE
-│  README.md
-│  南京-南宁剖面图.png
-│  南京-南宁剖面图子图.png
-│  
-├─.idea
-│  │  .gitignore
-│  │  misc.xml
-│  │  modules.xml
-│  │  python_practice.iml
-│  │  vcs.xml
-│  │  workspace.xml
-│  │  
-│  └─inspectionProfiles
-│          profiles_settings.xml
-│          
-├─Plotly
-│      exampleplot.ipynb
-│      
-├─python作业
-│      drawticai.py
-│      Pythonhomework10.ipynb
-│      Pythonhomework11.ipynb
-│      Pythonhomework12.ipynb
-│      Pythonhomework13.ipynb
-│      PythonHomework4.ipynb
-│      PythonHomework5.py
-│      pythonhomework6.py
-│      pythonhomework7.py
-│      Pythonhomework8.ipynb
-│      Pythonhomework9.ipynb
-│      
-├─wrfcode
-│      20210330wrfguangdongrain.ipynb
-│      draw.ipynb
-│      tc_In-Fa_2021072606.ipynb
-│      
-├─台风相关绘图
-│      landpoint.ipynb
-│      tcPmap.ipynb
-│      tcT_plot.ipynb
-│      tyDenglu_count.ipynb
-│      tyDenglu_count_speed.ipynb
-│      tyDenglu_CPlot.ipynb
-│      tyDenglu_CPlot2.0.ipynb
-│      tyDenglu_CPlot2.0test.ipynb
-│      tygif.ipynb
-│      typlot.ipynb
-│      tysc.ipynb
-│      tyssim_MSE.ipynb
-│      tyyd_speed.ipynb
-│      
-├─天气学诊断分析
-│      ex2.py
-│      ex2_2.0.py
-│      ex2_3.0.py
-│      ex2_expand.py
-│      ex3_1.0.py
-│      ex3_2.0.py
-│      ex4_1.0.py
-│      tianzhenex5.py
-│      tianzhenex5_1.0.ipynb
-│      天诊实习二os读取文件.py
-│      
-├─小程序
-│      cppy.py
-│      datagrouby.ipynb
-│      downloadleida.py
-│      lianWiFi.py
-│      numpy_and_pandas.py
-│      paquTianQiTu.py
-│      paquWeiXingTu.py
-│      pipUpdateAllPackages.py
-│      python_os.py
-│      qiupiandao.py
-│      weather2.py
-│      word_count.py
-│      word自动化.py
-│      垂直速度的修正.py
-│      
-├─气象统计
-│      TongJiex2_3.py
-│      TongJiex4.ipynb
-│      TongJiex4_1.py
-│      TongJiex4_2.py
-│      TongJiex5.py
-│      TongJiex6.ipynb
-│      
-├─画图
-│      Cartopy的白化.ipynb
-│      China_nine_lines_lambert.png
-│      draw.ipynb
-│      helloworld.ipynb
-│      LambertConformal_plot.py
-│      matplot.py
-│      matplotlib_pyplot_BARBS.py
-│      plot.py
-│      plotjupyter.ipynb
-│      plot_province.ipynb
-│      利用RGB文件创建cmap.ipynb
-│      南海绘制Lambert.ipynb
-│      南海绘制等距圆柱投影.ipynb
-│      地理投影绘图的坐标轴设置.ipynb
-│      画不沿着纬线和经线剖面图.ipynb
-│      绘制地理投影图时transform的意义.ipynb
-│      
-└─短期气候
-        DuanQiex1.ipynb
-        DuanQiex2.ipynb
-        DuanQiex3-4.ipynb
-        DuanQiex5-6.ipynb
-        DuanQiex7.ipynb
-```
+- __python\_practice__
+  - [LICENSE](LICENSE)
+  - __Plotly__
+    - [exampleplot.ipynb](Plotly/exampleplot.ipynb)
+  - [README.md](README.md)
+  - [daskarray2\_0.ipynb](daskarray2_0.ipynb)
+  - [julia\_in\_python.py](julia_in_python.py)
+  - __python作业__
+    - [PythonHomework4.ipynb](python作业/PythonHomework4.ipynb)
+    - [PythonHomework5.py](python作业/PythonHomework5.py)
+    - [Pythonhomework10.ipynb](python作业/Pythonhomework10.ipynb)
+    - [Pythonhomework11.ipynb](python作业/Pythonhomework11.ipynb)
+    - [Pythonhomework12.ipynb](python作业/Pythonhomework12.ipynb)
+    - [Pythonhomework13.ipynb](python作业/Pythonhomework13.ipynb)
+    - [Pythonhomework8.ipynb](python作业/Pythonhomework8.ipynb)
+    - [Pythonhomework9.ipynb](python作业/Pythonhomework9.ipynb)
+    - [drawticai.py](python作业/drawticai.py)
+    - [pythonhomework6.py](python作业/pythonhomework6.py)
+    - [pythonhomework7.py](python作业/pythonhomework7.py)
+  - __wrfcode__
+    - [20210330wrfguangdongrain.ipynb](wrfcode/20210330wrfguangdongrain.ipynb)
+    - [draw.ipynb](wrfcode/draw.ipynb)
+    - [tc\_In\-Fa\_2021072606.ipynb](wrfcode/tc_In-Fa_2021072606.ipynb)
+  - [南京\-南宁剖面图.png](%E5%8D%97%E4%BA%AC-%E5%8D%97%E5%AE%81%E5%89%96%E9%9D%A2%E5%9B%BE.png)
+  - [南京\-南宁剖面图子图.png](%E5%8D%97%E4%BA%AC-%E5%8D%97%E5%AE%81%E5%89%96%E9%9D%A2%E5%9B%BE%E5%AD%90%E5%9B%BE.png)
+  - __台风相关绘图__
+    - [landpoint.ipynb](台风相关绘图/landpoint.ipynb)
+    - [tcPmap.ipynb](台风相关绘图/tcPmap.ipynb)
+    - [tcT\_plot.ipynb](台风相关绘图/tcT_plot.ipynb)
+    - [tyDenglu\_CPlot.ipynb](台风相关绘图/tyDenglu_CPlot.ipynb)
+    - [tyDenglu\_CPlot2.0.ipynb](台风相关绘图/tyDenglu_CPlot2.0.ipynb)
+    - [tyDenglu\_CPlot2.0test.ipynb](台风相关绘图/tyDenglu_CPlot2.0test.ipynb)
+    - [tyDenglu\_count.ipynb](台风相关绘图/tyDenglu_count.ipynb)
+    - [tyDenglu\_count\_speed.ipynb](台风相关绘图/tyDenglu_count_speed.ipynb)
+    - [tygif.ipynb](台风相关绘图/tygif.ipynb)
+    - [typlot.ipynb](台风相关绘图/typlot.ipynb)
+    - [tysc.ipynb](台风相关绘图/tysc.ipynb)
+    - [tyssim\_MSE.ipynb](台风相关绘图/tyssim_MSE.ipynb)
+    - [tyyd\_speed.ipynb](台风相关绘图/tyyd_speed.ipynb)
+  - __天气学诊断分析__
+    - [ex2.py](天气学诊断分析/ex2.py)
+    - [ex2\_2.0.py](天气学诊断分析/ex2_2.0.py)
+    - [ex2\_3.0.py](天气学诊断分析/ex2_3.0.py)
+    - [ex2\_expand.py](天气学诊断分析/ex2_expand.py)
+    - [ex3\_1.0.py](天气学诊断分析/ex3_1.0.py)
+    - [ex3\_2.0.py](天气学诊断分析/ex3_2.0.py)
+    - [ex4\_1.0.py](天气学诊断分析/ex4_1.0.py)
+    - [tianzhenex5.py](天气学诊断分析/tianzhenex5.py)
+    - [tianzhenex5\_1.0.ipynb](天气学诊断分析/tianzhenex5_1.0.ipynb)
+    - [天诊实习二os读取文件.py](天气学诊断分析/%E5%A4%A9%E8%AF%8A%E5%AE%9E%E4%B9%A0%E4%BA%8Cos%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6.py)
+  - __小程序__
+    - [cppy.py](小程序/cppy.py)
+    - [datagrouby.ipynb](小程序/datagrouby.ipynb)
+    - [downloadleida.py](小程序/downloadleida.py)
+    - [lianWiFi.py](小程序/lianWiFi.py)
+    - [numpy\_and\_pandas.py](小程序/numpy_and_pandas.py)
+    - [paquTianQiTu.py](小程序/paquTianQiTu.py)
+    - [paquWeiXingTu.py](小程序/paquWeiXingTu.py)
+    - [pipUpdateAllPackages.py](小程序/pipUpdateAllPackages.py)
+    - [python\_os.py](小程序/python_os.py)
+    - [qiupiandao.py](小程序/qiupiandao.py)
+    - [weather2.py](小程序/weather2.py)
+    - [word\_count.py](小程序/word_count.py)
+    - [word自动化.py](小程序/word%E8%87%AA%E5%8A%A8%E5%8C%96.py)
+    - [垂直速度的修正.py](小程序/%E5%9E%82%E7%9B%B4%E9%80%9F%E5%BA%A6%E7%9A%84%E4%BF%AE%E6%AD%A3.py)
+  - __气象统计__
+    - [TongJiex2\_3.py](气象统计/TongJiex2_3.py)
+    - [TongJiex4.ipynb](气象统计/TongJiex4.ipynb)
+    - [TongJiex4\_1.py](气象统计/TongJiex4_1.py)
+    - [TongJiex4\_2.py](气象统计/TongJiex4_2.py)
+    - [TongJiex5.py](气象统计/TongJiex5.py)
+    - [TongJiex6.ipynb](气象统计/TongJiex6.ipynb)
+  - __画图__
+    - [Cartopy的白化.ipynb](画图/Cartopy%E7%9A%84%E7%99%BD%E5%8C%96.ipynb)
+    - [China\_nine\_lines\_lambert.png](画图/China_nine_lines_lambert.png)
+    - [LambertConformal\_plot.py](画图/LambertConformal_plot.py)
+    - [draw.ipynb](画图/draw.ipynb)
+    - [helloworld.ipynb](画图/helloworld.ipynb)
+    - [matplot.py](画图/matplot.py)
+    - [matplotlib\_pyplot\_BARBS.py](画图/matplotlib_pyplot_BARBS.py)
+    - [plot.py](画图/plot.py)
+    - [plot\_province.ipynb](画图/plot_province.ipynb)
+    - [plotjupyter.ipynb](画图/plotjupyter.ipynb)
+    - [利用RGB文件创建cmap.ipynb](画图/%E5%88%A9%E7%94%A8RGB%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BAcmap.ipynb)
+    - [南海绘制Lambert.ipynb](画图/%E5%8D%97%E6%B5%B7%E7%BB%98%E5%88%B6Lambert.ipynb)
+    - [南海绘制等距圆柱投影.ipynb](画图/%E5%8D%97%E6%B5%B7%E7%BB%98%E5%88%B6%E7%AD%89%E8%B7%9D%E5%9C%86%E6%9F%B1%E6%8A%95%E5%BD%B1.ipynb)
+    - [地理投影绘图的坐标轴设置.ipynb](画图/%E5%9C%B0%E7%90%86%E6%8A%95%E5%BD%B1%E7%BB%98%E5%9B%BE%E7%9A%84%E5%9D%90%E6%A0%87%E8%BD%B4%E8%AE%BE%E7%BD%AE.ipynb)
+    - [画不沿着纬线和经线剖面图.ipynb](画图/%E7%94%BB%E4%B8%8D%E6%B2%BF%E7%9D%80%E7%BA%AC%E7%BA%BF%E5%92%8C%E7%BB%8F%E7%BA%BF%E5%89%96%E9%9D%A2%E5%9B%BE.ipynb)
+    - [绘制地理投影图时transform的意义.ipynb](画图/%E7%BB%98%E5%88%B6%E5%9C%B0%E7%90%86%E6%8A%95%E5%BD%B1%E5%9B%BE%E6%97%B6transform%E7%9A%84%E6%84%8F%E4%B9%89.ipynb)
+  - __短期气候__
+    - [DuanQiex1.ipynb](短期气候/DuanQiex1.ipynb)
+    - [DuanQiex2.ipynb](短期气候/DuanQiex2.ipynb)
+    - [DuanQiex3\-4.ipynb](短期气候/DuanQiex3-4.ipynb)
+    - [DuanQiex5\-6.ipynb](短期气候/DuanQiex5-6.ipynb)
+    - [DuanQiex7.ipynb](短期气候/DuanQiex7.ipynb)
+
