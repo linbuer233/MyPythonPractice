@@ -90,6 +90,7 @@
     - [南海绘制Lambert.ipynb](画图/%E5%8D%97%E6%B5%B7%E7%BB%98%E5%88%B6Lambert.ipynb)
     - [南海绘制等距圆柱投影.ipynb](画图/%E5%8D%97%E6%B5%B7%E7%BB%98%E5%88%B6%E7%AD%89%E8%B7%9D%E5%9C%86%E6%9F%B1%E6%8A%95%E5%BD%B1.ipynb)
     - [地理投影绘图的坐标轴设置.ipynb](画图/%E5%9C%B0%E7%90%86%E6%8A%95%E5%BD%B1%E7%BB%98%E5%9B%BE%E7%9A%84%E5%9D%90%E6%A0%87%E8%BD%B4%E8%AE%BE%E7%BD%AE.ipynb)
+    - [气象画图常用色标.ipynb](画图/%E6%B0%94%E8%B1%A1%E7%94%BB%E5%9B%BE%E5%B8%B8%E7%94%A8%E8%89%B2%E6%A0%87.ipynb)
     - [画不沿着纬线和经线剖面图.ipynb](画图/%E7%94%BB%E4%B8%8D%E6%B2%BF%E7%9D%80%E7%BA%AC%E7%BA%BF%E5%92%8C%E7%BB%8F%E7%BA%BF%E5%89%96%E9%9D%A2%E5%9B%BE.ipynb)
     - [绘制地理投影图时transform的意义.ipynb](画图/%E7%BB%98%E5%88%B6%E5%9C%B0%E7%90%86%E6%8A%95%E5%BD%B1%E5%9B%BE%E6%97%B6transform%E7%9A%84%E6%84%8F%E4%B9%89.ipynb)
   - __短期气候__
@@ -98,4 +99,3 @@
     - [DuanQiex3\-4.ipynb](短期气候/DuanQiex3-4.ipynb)
     - [DuanQiex5\-6.ipynb](短期气候/DuanQiex5-6.ipynb)
     - [DuanQiex7.ipynb](短期气候/DuanQiex7.ipynb)
-
