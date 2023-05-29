@@ -55,7 +55,7 @@ plt.barbs(lons[wind_slice], lats[wind_slice], uwind[wind_slice], vwind[wind_slic
           color='black', transform=ccrs.PlateCarree())
 #########[x,y,u,v]  这四个都要 ndarray 形式
 ######### https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.barbs.html#matplotlib.pyplot.barbs
-ax.set_title('2021-05-20 00时500hPa温压场', fontsize=12)
+ax.set_title('2021-05-20 00 时 500hPa 温压场', fontsize=12)
 
 gl = ax.gridlines()  ##生成网格线
 ax.grid()

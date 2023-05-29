@@ -2,7 +2,7 @@ from math import *
 
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import xarray as xr
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 from xgrads import *
@@ -16,13 +16,13 @@ def createmap():
     ystep = 10
     proj = ccrs.PlateCarree(central_longitude=180)  # 确定地图投影
     fig = plt.figure(figsize=(9, 6))  # dpi=150)###生成底图
-    ax = fig.subplots(1, 1, subplot_kw={'projection': proj})  # 确定子图，与grads的类似
+    ax = fig.subplots(1, 1, subplot_kw={'projection': proj})  # 确定子图，与 grads 的类似
     ##海岸线
     ax.coastlines(scale)
     # 标注坐标轴
     ax.set_xticks(np.arange(box[0], box[1] + xstep, xstep), crs=ccrs.PlateCarree())
     ax.set_yticks(np.arange(box[2], box[3] + ystep, ystep), crs=ccrs.PlateCarree())
-    # 经纬度格式，把0经度设置不加E和W
+    # 经纬度格式，把 0 经度设置不加 E 和 W
     lon_formatter = LongitudeFormatter(zero_direction_label=False)
     lat_formatter = LatitudeFormatter()
     ax.xaxis.set_major_formatter(lon_formatter)
@@ -31,17 +31,17 @@ def createmap():
     return ax, fig
 
 
-############NCEP_Z200_30y_Wt转换成nc文件############
+############NCEP_Z200_30y_Wt 转换成 nc 文件############
 hgt = open_CtlDataset('D:\\grads\\TongJi\\NCEP_Z200_30y_Wt.ctl')
 hgt.attrs['pdef'] = 'None'
 hgt.to_netcdf('D:\\grads\\TongJi\\NCEP_Z200_30y_Wt.nc')
 hgt = xr.open_dataset('D:\\grads\\TongJi\\NCEP_Z200_30y_Wt.nc')
-############NCEP_TPSST_30y_Wt转换成nc文件###########
+############NCEP_TPSST_30y_Wt 转换成 nc 文件###########
 air = open_CtlDataset('D:\\grads\\TongJi\\NCEP_TPSST_30y_Wt.ctl')
 air.attrs['pdef'] = 'None'
 air.to_netcdf('D:\\grads\\TongJi\\NCEP_TPSST_30y_Wt.nc')
 air = xr.open_dataset('D:\\grads\\TongJi\\NCEP_TPSST_30y_Wt.nc')
-###########NCEP_IOSST_30y_Wt转换成nc文件###########
+###########NCEP_IOSST_30y_Wt 转换成 nc 文件###########
 airindia = open_CtlDataset('D:\\grads\\TongJi\\NCEP_IOSST_30y_Wt.ctl')
 airindia.attrs['pdef'] = 'None'
 airindia.to_netcdf('D:\\grads\\TongJi\\NCEP_IOSST_30y_Wt.nc')
@@ -100,7 +100,7 @@ avest_india2 = np.nanmean(st_india2)
 avest_india3 = np.nanmean(st_india3)
 avest_india4 = np.nanmean(st_india4)
 avest_india5 = np.nanmean(st_india5)
-###200hPa位势高度场
+###200hPa 位势高度场
 time = hgt['time'][:]
 lonh = hgt['lon'][:]
 lath = hgt['lat'][:]
@@ -119,7 +119,7 @@ stTP = np.array([[avest1], [avest2], [avest3], [avest4], [avest5]])
 stindia = np.array([[avest_india1], [avest_india2], [avest_india3], [avest_india4], [avest_india5]])
 hgtZ200 = np.array([hgt1, hgt2, hgt3, hgt4, hgt5])
 
-###Z200和TPSST的一元回归
+###Z200 和 TPSST 的一元回归
 b = np.zeros((len(lath), len(lonh)))
 
 for i in range(len(lonh)):
@@ -133,7 +133,7 @@ colorbar = ax.contourf(lon1, lat1, b, cmap='bwr', transform=ccrs.PlateCarree())
 plt.colorbar(colorbar, extendrect='True', pad=0.03, fraction=0.04, shrink=1)
 plt.savefig(r'D:\grads\TongJi\ex4\Z200andTPSST1.png')
 plt.close()
-###Z200和IOSST的一元回归
+###Z200 和 IOSST 的一元回归
 for i in range(len(lon1)):
     for j in range(len(lat1)):
         b[j, i] = -(avest_india1 * hgt1[j, i] + avest_india2 * hgt2[j, i] + avest_india3 * hgt3[j, i] + avest_india4 *
@@ -172,7 +172,7 @@ plt.savefig(r'D:\grads\TongJi\ex4\ex42bIOSST.png')
 plt.close()
 
 ###偏相关分析方法
-##1是TPSST，2是IOSST
+##1 是 TPSST，2 是 IOSST
 Ry12 = np.zeros((len(lat1), len(lon1)))
 Ry21 = np.zeros((len(lat1), len(lon1)))
 R12y = np.zeros((len(lat1), len(lon1)))

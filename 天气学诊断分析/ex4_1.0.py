@@ -1,5 +1,5 @@
 '''
-实习四:是利用同一套资料计算
+实习四：是利用同一套资料计算
 （1）流函数和势函数；
 （2）水汽通量和水汽通量散度；
 （3）水汽流函数和水汽势函数。
@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import metpy.calc as mpcalc
 import metpy.constants
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import pandas as pd
 from cartopy.io.shapereader import Reader
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER

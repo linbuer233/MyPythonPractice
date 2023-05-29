@@ -20,7 +20,7 @@ print(np.shape(a))
 print(a.size)
 # or
 print(np.size(a))
-# 生成0矩阵
+# 生成 0 矩阵
 c = np.zeros((3, 4), dtype=int)
 print(c)
 print('\n')
@@ -44,7 +44,7 @@ c = d * 10 ** 5
 print(c)
 print(sin(90 * pi / 180))
 for i in range(4):
-    titlename = '2' + str(i) + '-' + '2' + str(i + 1) + '日24小时变温'
+    titlename = '2' + str(i) + '-' + '2' + str(i + 1) + '日 24 小时变温'
     print(titlename)
 
 # for i in datetime:

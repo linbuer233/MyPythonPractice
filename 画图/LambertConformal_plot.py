@@ -25,7 +25,7 @@ path = mpath.Path([[leftlon, lowerlat], [rightlon, lowerlat], [rightlon, upperla
                    [leftlon, lowerlat]]).interpolated(20)  ###设置地图边界
 # transpath = (ccrs.PlateCarree()._as_mpl_transform(ax) - ax.transData).transform_path(path)
 # ax.set_boundary(transpath)
-# 经纬度格式，把0经度设置不加E和W
+# 经纬度格式，把 0 经度设置不加 E 和 W
 lon_formatter = LongitudeFormatter(zero_direction_label=False)
 lat_formatter = LatitudeFormatter()
 ax.xaxis.set_major_formatter(lon_formatter)
@@ -62,7 +62,7 @@ plt.barbs(lons[wind_slice], lats[wind_slice], uwind[wind_slice], vwind[wind_slic
 
 #########[x,y,u,v]  这四个都要 ndarray 形式
 ######### https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.barbs.html#matplotlib.pyplot.barbs
-ax.set_title('2021-05-20 00时500hPa温压场', fontsize=12)
+ax.set_title('2021-05-20 00 时 500hPa 温压场', fontsize=12)
 
 gl = ax.gridlines()  ##生成网格线
 ax.grid()

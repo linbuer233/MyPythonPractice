@@ -14,14 +14,14 @@ lon, lat = np.meshgrid(lons, lats)
 lon = lon * units.degrees_east
 lon, level = np.meshgrid(lons, levels)
 # level=level*units.hPa
-####赋上单位,度数
+#### 赋上单位，度数
 lons = lons * units.degrees_east
 lats = lats * units.degrees_north
-dx, dy = mpcalc.lat_lon_grid_deltas(lons, lats)  ###后面散度计算需要
+dx, dy = mpcalc.lat_lon_grid_deltas(lons, lats)  ### 后面散度计算需要
 
 uwind_levels = all_vars['u'][0, :, :, :]
 vwind_levels = all_vars['v'][0, :, :, :]
-####赋上单位，m/s
+#### 赋上单位，m/s
 uwind_levels = uwind_levels * (units.m / units.s)
 vwind_levels = vwind_levels * (units.m / units.s)
 ###################################################################################################
@@ -41,10 +41,10 @@ fig = plt.figure()
 ax = fig.subplots(1, 1)
 plt.contourf(lon, level, W_speed_Xiu[:, 11, :])
 plt.colorbar()
-#####横坐标显示经度
+##### 横坐标显示经度
 lon_formatter = LongitudeFormatter(zero_direction_label=False)
 ax.xaxis.set_major_formatter(lon_formatter)
-####纵坐标格式显示
+#### 纵坐标格式显示
 ax.invert_yaxis()
 ax.set_yscale('symlog')
 plt.yticks([1000, 900, 800, 700, 600, 500], ["1000", "900", "800", "700", "600", "500"])

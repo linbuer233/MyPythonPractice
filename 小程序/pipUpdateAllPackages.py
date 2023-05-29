@@ -1,5 +1,5 @@
 """
-实现用pip更新所有的包，类似于conda 的conda update --all
+实现用 pip 更新所有的包，类似于 conda 的 conda update --all
 """
 
 import os

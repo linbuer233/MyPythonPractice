@@ -1,7 +1,7 @@
 from math import exp
 
 import netCDF4 as nc
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import pandas as pd
 
 upfrist = ['air', 'hgt', 'uv']
@@ -39,7 +39,7 @@ for k in upfrist:
                             x_i += 1
                             if x_i == 45:  # 第五行只有五个数据，设置提前跳出循环
                                 break
-            else:  # 读取uv风场
+            else:  # 读取 uv 风场
                 for bb in range(3):
                     b = f.readline()
                 for var_i in range(2, 4):
@@ -60,7 +60,7 @@ for k in upfrist:
                                 if x_i == 45:
                                     break
 print(a[0, 0, 0, 0, 0])
-##############################创建nc文件
+##############################创建 nc 文件
 f_w = nc.Dataset('D:\\python\\tianzhen\\shixi2\\al.nc', 'w', format('NETCDF4'))
 
 ###创建一个组容纳所有变量

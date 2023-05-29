@@ -1,6 +1,6 @@
 '''
-实习三：已知2021年7月17日00时-22日18时北半球的风场(u,v)、高度场(h)、温度场和相对湿度每日四次的等压面资料，
-请利用相关资料求出（东经50-160，北纬10-80）区域内
+实习三：已知 2021 年 7 月 17 日 00 时 -22 日 18 时北半球的风场 (u,v)、高度场 (h)、温度场和相对湿度每日四次的等压面资料，
+请利用相关资料求出（东经 50-160，北纬 10-80）区域内
 （1）垂直速度。
 （2）进行散度和垂直速度的订正（第二种修正方案，其余修正方案可自行选择尝试）。
 当然环流形势分析也是需要的。
@@ -14,7 +14,7 @@ import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import metpy.calc as mpcalc
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import pandas as pd
 import xarray as xr
 from cartopy.io.shapereader import Reader
@@ -44,7 +44,7 @@ def createmap():
     Lam.xlabel_style = {'size': 4}
     Lam.ylabel_style = {'size': 4}
 
-    # 经纬度格式，把0经度设置不加E和W
+    # 经纬度格式，把 0 经度设置不加 E 和 W
     # lon_formatter = LongitudeFormatter(zero_direction_label=False)
     # lat_formatter = LatitudeFormatter()
     # ax.xaxis.set_major_formatter(lon_formatter)
@@ -68,7 +68,7 @@ for var_i in wenjian:
     ##在各个要素文件下遍历，获取创建数组所需的维度大小，除了格点数
     for root, dirs, files in os.walk(wenjian_path):
         ##获取高度层数
-        #####让dirs里高度文件夹按数值大小排序，以防止数据存放到数组里的顺序错误
+        #####让 dirs 里高度文件夹按数值大小排序，以防止数据存放到数组里的顺序错误
         a = np.zeros(len(dirs))
         for i in dirs:
             a[dirs.index(i)] = int(i)
@@ -88,7 +88,7 @@ for var_i in wenjian:
     else:
         hgt_t_uv = np.full((4, len(level) - 1, len(wenjian_timename), NY, NX), 0.000)
 
-########################################################读取数据，os文件遍历################################################
+########################################################读取数据，os 文件遍历################################################
 for var_i in wenjian:
     wenjian_path = 'D:\\python\\tianzhen\\shixi3_4\\data\\' + var_i
     #####设置一个空列表，当作数据存放的中继点
@@ -96,7 +96,7 @@ for var_i in wenjian:
     uv_data = []
     rh_data = []
     for root, dirs, files in os.walk(wenjian_path):
-        #####让dirs里高度文件夹按数值大小排序，以防止数据存放到数组里的顺序错误
+        #####让 dirs 里高度文件夹按数值大小排序，以防止数据存放到数组里的顺序错误
         a = np.zeros(len(dirs))
         for i in dirs:
             a[dirs.index(i)] = int(i)
@@ -108,19 +108,19 @@ for var_i in wenjian:
             for f in files:
                 data = pd.read_csv(os.path.join(root, f), skiprows=3, header=None, sep='\s+')
                 zhongJian = data.values.reshape(2, NY, 80)
-                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=2)  ####去掉末尾的Nan值
+                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=2)  ####去掉末尾的 Nan 值
                 uv_data.append(zhongJian)  #
         if var_i == 'rh':
             for f in files:
                 data = pd.read_csv(os.path.join(root, f), skiprows=4, header=None, sep='\s+')
                 zhongJian = data.values.reshape(NY, 80)
-                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=1)  ####去掉末尾的Nan值
+                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=1)  ####去掉末尾的 Nan 值
                 rh_data.append(zhongJian)  #
         if var_i == 'hgt' or var_i == 't':
             for f in files:
                 data = pd.read_csv(os.path.join(root, f), skiprows=4, header=None, sep='\s+')
                 zhongJian = data.values.reshape(NY, 80)
-                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=1)  ####去掉末尾的Nan值
+                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=1)  ####去掉末尾的 Nan 值
                 hgt_t_data.append(zhongJian)  #
     if var_i == 'uv':
         uv_data_array = np.array(uv_data)
@@ -139,7 +139,7 @@ for var_i in wenjian:
         hgt_t_data_array = hgt_t_data_array[::-1, :, ::-1, :]  ###反转高度轴和维度轴
         hgt_t_uv[wenjian.index(var_i), :, :, :, :] = hgt_t_data_array
 
-###################################################存放到nc文件中#########################################################
+###################################################存放到 nc 文件中#########################################################
 starttime = wenjian_timename[0]
 starttime = starttime[:-2]
 endtime = wenjian_timename[-1]
@@ -189,11 +189,11 @@ lons = ds['lon'][:]
 lats = ds['lat'][:]
 levels = ds['level'][:]
 time = ds['time'][:]
-uwind = ds['u'][:, :, :, :]  ##高度|时间|维度|经度
-vwind = ds['v'][:, :, :, :]  ##高度|时间|维度|经度
-hgt = ds['hgt'][:, :, :, :]  ##高度|时间|维度|经度
-Temp = ds['t'][:, :, :, :]  ##高度|时间|维度|经度
-##给个单位,防止metpy计算报错
+uwind = ds['u'][:, :, :, :]  ##高度 | 时间 | 维度 | 经度
+vwind = ds['v'][:, :, :, :]  ##高度 | 时间 | 维度 | 经度
+hgt = ds['hgt'][:, :, :, :]  ##高度 | 时间 | 维度 | 经度
+Temp = ds['t'][:, :, :, :]  ##高度 | 时间 | 维度 | 经度
+##给个单位，防止 metpy 计算报错
 lons = lons * units.degrees_east
 lats = lats * units.degrees_north
 uwind = uwind * (units.m / units.s)
@@ -208,7 +208,7 @@ level_uv = levels.data
 Pcha = []  ##相邻两层的气压差
 for i in range(len(level_uv) - 1):
     Pcha.append(float(level_uv[i + 1]) - float(level_uv[i]))
-Pcha = Pcha * 100  ###翻转，从地面相邻两层开始，并转成Pa
+Pcha = Pcha * 100  ###翻转，从地面相邻两层开始，并转成 Pa
 div = np.zeros((len(level_uv), hgt_t_uv.shape[2], NY, NX))
 W_speed = np.zeros((len(level_uv), hgt_t_uv.shape[2], NY, NX))
 W_speed_Xiu = np.zeros((len(level_uv), hgt_t_uv.shape[2], NY, NX))
@@ -241,9 +241,9 @@ L = 2.5 * 10 ** 6  # J/kg
 Cp = 1004  # J/(K*kg)
 a = 17.2693882
 b = 35.86
-##读取rh
+##读取 rh
 RH = xr.open_dataset(r'D:\python\tianzhen\shixi3_4\ds_rh.nc')
-Theta_rh = RH['rh'][:, :, :, :]  ###高度|时间|维度|经度
+Theta_rh = RH['rh'][:, :, :, :]  ###高度 | 时间 | 维度 | 经度
 rh_level = RH['level'][:]
 rh_P = []
 for i in rh_level:
@@ -297,7 +297,7 @@ for time_i in range(len(time)):
         titlename = wodu_level[h_i] + '_' + wenjian_timename[time_i] + '时涡度—等高场'
         ax.set_title(titlename)
         ax.grid()
-        picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\涡度-位势场\\ ' + wodu_level[h_i]
+        picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\涡度 - 位势场\\ ' + wodu_level[h_i]
         if not os.path.exists(picturepath):
             os.makedirs(picturepath)
         picturename = picturepath + '\\' + titlename + '.png'

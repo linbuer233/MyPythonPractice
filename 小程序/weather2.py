@@ -9,20 +9,20 @@ def get_weather_data():
     city_name = input('请输入要查询的城市名称：')
     url1 = 'http://wthrcdn.etouch.cn/weather_mini?city=' + urllib.parse.quote(city_name)
     url2 = 'http://wthrcdn.etouch.cn/weather_mini?citykey=101010100'
-    # 网址1只需要输入城市名，网址2需要输入城市代码
+    # 网址 1 只需要输入城市名，网址 2 需要输入城市代码
     # print(url1)
     weather_data = urllib.request.urlopen(url1).read()
     # 读取网页数据
     weather_data = gzip.decompress(weather_data).decode('utf-8')
     # 解压网页数据
     weather_dict = json.loads(weather_data)
-    # 将json数据转换为dict数据
+    # 将 json 数据转换为 dict 数据
     return weather_dict
 
 
 def show_weather(weather_data):
     weather_dict = weather_data
-    # 将json数据转换为dict数据
+    # 将 json 数据转换为 dict 数据
     if weather_dict.get('desc') == 'invilad-citykey':
         print('你输入的城市名有误，或者天气中心未收录你所在城市')
     elif weather_dict.get('desc') == 'OK':

@@ -1,6 +1,6 @@
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import xarray as xr
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 from xgrads import *
@@ -14,14 +14,14 @@ def createmap():
     ystep = 10
     proj = ccrs.PlateCarree(central_longitude=0)  # 确定地图投影
     fig = plt.figure(figsize=(9, 6))  # dpi=150)###生成底图
-    ax = fig.subplots(1, 1, subplot_kw={'projection': proj})  # 确定子图，与grads的类似
+    ax = fig.subplots(1, 1, subplot_kw={'projection': proj})  # 确定子图，与 grads 的类似
 
     ##海岸线
     ax.coastlines(scale)
     # 标注坐标轴
     ax.set_xticks(np.arange(box[0], box[1] + xstep, xstep), crs=ccrs.PlateCarree())
     ax.set_yticks(np.arange(box[2], box[3] + ystep, ystep), crs=ccrs.PlateCarree())
-    # 经纬度格式，把0经度设置不加E和W
+    # 经纬度格式，把 0 经度设置不加 E 和 W
     lon_formatter = LongitudeFormatter(zero_direction_label=False)
     lat_formatter = LatitudeFormatter()
     ax.xaxis.set_major_formatter(lon_formatter)
@@ -30,17 +30,17 @@ def createmap():
     return ax, fig
 
 
-############NCEP_Z200_30y_Wt转换成nc文件############
+############NCEP_Z200_30y_Wt 转换成 nc 文件############
 hgt = open_CtlDataset('D:\\grads\\TongJi\\NCEP_Z200_30y_Wt.ctl')
 hgt.attrs['pdef'] = 'None'
 hgt.to_netcdf('D:\\grads\\TongJi\\NCEP_Z200_30y_Wt.nc')
 hgt = xr.open_dataset('D:\\grads\\TongJi\\NCEP_Z200_30y_Wt.nc')
-############NCEP_TPSST_30y_Wt转换成nc文件###########
+############NCEP_TPSST_30y_Wt 转换成 nc 文件###########
 air = open_CtlDataset('D:\\grads\\TongJi\\NCEP_TPSST_30y_Wt.ctl')
 air.attrs['pdef'] = 'None'
 air.to_netcdf('D:\\grads\\TongJi\\NCEP_TPSST_30y_Wt.nc')
 air = xr.open_dataset('D:\\grads\\TongJi\\NCEP_TPSST_30y_Wt.nc')
-###########NCEP_IOSST_30y_Wt转换成nc文件###########
+###########NCEP_IOSST_30y_Wt 转换成 nc 文件###########
 airindia = open_CtlDataset('D:\\grads\\TongJi\\NCEP_IOSST_30y_Wt.ctl')
 airindia.attrs['pdef'] = 'None'
 airindia.to_netcdf('D:\\grads\\TongJi\\NCEP_IOSST_30y_Wt.nc')
@@ -107,7 +107,7 @@ avest_india3 = sum(st_india3_new) / (len(st_india3_new))
 avest_india4 = sum(st_india4_new) / (len(st_india4_new))
 avest_india5 = sum(st_india5_new) / (len(st_india5_new))
 
-###200hPa位势高度场
+###200hPa 位势高度场
 time = hgt['time'][:]
 lon1 = hgt['lon'][:]
 lat1 = hgt['lat'][:]

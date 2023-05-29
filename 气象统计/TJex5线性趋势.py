@@ -2,7 +2,7 @@ from math import *
 
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import xarray as xr
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 from xgrads import *
@@ -16,13 +16,13 @@ def createmap():  ###############################################生成地图###
     ystep = 10
     proj = ccrs.PlateCarree()  # 确定地图投影
     fig = plt.figure(figsize=(9, 6))  # dpi=150)###生成底图
-    ax = fig.subplots(1, 1, subplot_kw={'projection': proj})  # 确定子图，与grads的类似
+    ax = fig.subplots(1, 1, subplot_kw={'projection': proj})  # 确定子图，与 grads 的类似
     ##海岸线
     ax.coastlines(scale)
     # 标注坐标轴
     ax.set_xticks(np.arange(box[0], box[1] + xstep, xstep), crs=ccrs.PlateCarree())
     ax.set_yticks(np.arange(box[2], box[3] + ystep, ystep), crs=ccrs.PlateCarree())
-    # 经纬度格式，把0经度设置不加E和W
+    # 经纬度格式，把 0 经度设置不加 E 和 W
     lon_formatter = LongitudeFormatter(zero_direction_label=False)
     lat_formatter = LatitudeFormatter()
     ax.xaxis.set_major_formatter(lon_formatter)

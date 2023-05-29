@@ -4,13 +4,13 @@ import numpy as np
 import xarray as xr
 from xgrads import *
 
-############把NCEP_slp_30y_Wt转换成nc文件#############
+############把 NCEP_slp_30y_Wt 转换成 nc 文件#############
 slp = open_CtlDataset('D:\\grads\\TongJi\\NCEP_slp_30y_Wt.ctl')
 slp.attrs['pdef'] = 'None'
 slp.to_netcdf('D:\\grads\\TongJi\\NCEP_slp_30y_Wt.nc')
 slp = xr.open_dataset('D:\\grads\\TongJi\\NCEP_slp_30y_Wt.nc')
 
-###########把海温指数距平转成nc文件##########
+###########把海温指数距平转成 nc 文件##########
 air = open_CtlDataset('D:\\grads\\TongJi\\ex2\\ninosst.ctl')
 air.attrs['pdef'] = 'None'
 air.to_netcdf('D:\\grads\\TongJi\\ex2\\ninosst.nc')
@@ -36,8 +36,8 @@ haiwenup = haiwenup / 29
 # 滞后自相关系数
 rhaiwen = haiwenup / haiwenfangcha
 print(rhaiwen)
-########计算soi滞后自相关系数###########
-# 求soi距平
+########计算 soi 滞后自相关系数###########
+# 求 soi 距平
 temp = 0
 for i in range(30):
     temp = temp + soi[i]

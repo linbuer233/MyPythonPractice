@@ -1,6 +1,6 @@
 '''
 实现连校园网
-1.打开wifi
+1.打开 wifi
 2.登陆校园网
 '''
 
@@ -11,7 +11,7 @@ os.system('netsh wlan connect name=i-NUIST')
 time.sleep(2)
 print('连接中')
 from selenium import webdriver
-## 导入selenium的浏览器驱动接口
+## 导入 selenium 的浏览器驱动接口
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager

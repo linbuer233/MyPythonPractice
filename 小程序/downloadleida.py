@@ -1,4 +1,4 @@
-# 下载leida
+# 下载 leida
 def downloadld(txtpath, picturepath):
     import pandas as pd
     import requests
@@ -11,7 +11,7 @@ def downloadld(txtpath, picturepath):
         year = name[13:17]
         month = name[17:19]
         day = name[19:21]
-        # 通过url读取图片信息
+        # 通过 url 读取图片信息
         page = requests.get(img_url)
         # 转为二进制图片
         img = page.content

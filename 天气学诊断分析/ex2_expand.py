@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import xarray as xr
 
-###############################合成多个nc文件
+###############################合成多个 nc 文件
 # a=xr.open_mfdataset('D:\\python\\tianzhen\\1980-2010airTlevel\\air.*.nc')
 # a.to_netcdf('D:\\python\\tianzhen\\1980-2010airTlevel\\1.nc')
 # a=xr.open_mfdataset('D:\\python\\tianzhen\\1980-2010airsurface\\air.sig995.*.nc')

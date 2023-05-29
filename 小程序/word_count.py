@@ -25,7 +25,7 @@ def word_count(path):
     for i in word:
         print(chr(i), ":", "\t", str(bigcount[word.index(i)]), " | ", chr(i + 32), ":", "\t",
               str(smallcount[word.index(i)]),
-              " | ", "总共:", allcount[word.index(i)])
+              " | ", "总共：", allcount[word.index(i)])
         print("---------------------------------------------")
 
 

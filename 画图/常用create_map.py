@@ -1,6 +1,6 @@
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import xarray as xr
 from cartopy.io.shapereader import Reader
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
@@ -23,7 +23,7 @@ def createmap():
     ax = fig.subplots(1, 1, subplot_kw={'projection': proj})
 
     ax.set_extent(box, crs=ccrs.PlateCarree())
-    ##设置大陆的颜色，1为白，0为黑
+    ##设置大陆的颜色，1 为白，0 为黑
     # land=cfeat.NaturalEarthFeature('physical','land',scale,edgecolor='face',facecolor=cfeat.COLORS['land'])
     # ax.add_feature(land,facecolor='0.75')
     ##海岸线
@@ -31,7 +31,7 @@ def createmap():
     # 标注坐标轴
     ax.set_xticks(np.arange(box[0], box[1] + xstep, xstep), crs=ccrs.PlateCarree())
     ax.set_yticks(np.arange(box[2], box[3] + ystep, ystep), crs=ccrs.PlateCarree())
-    # 经纬度格式，把0经度设置不加E和W
+    # 经纬度格式，把 0 经度设置不加 E 和 W
     lon_formatter = LongitudeFormatter(zero_direction_label=False)
     lat_formatter = LatitudeFormatter()
     ax.xaxis.set_major_formatter(lon_formatter)

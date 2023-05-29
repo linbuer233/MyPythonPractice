@@ -29,12 +29,12 @@ def insertHR(paragraph, color, width):
 
 filepath = sys.argv[1]
 for _ in range(1):
-    # doc转docx，方便python-docx处理
+    # doc 转 docx，方便 python-docx 处理
     from win32com.client import Dispatch
 
     word = Dispatch('Word.Application')
-    # doc转化docx
-    doc = word.Documents.Open(filepath)  # ('D:\\micaps\\text\\贺州市-旬月天气预报-2022011-2022年4月下旬天气预报.doc')
+    # doc 转化 docx
+    doc = word.Documents.Open(filepath)  # ('D:\\micaps\\text\\贺州市 - 旬月天气预报 -2022011-2022 年 4 月下旬天气预报.doc')
     docxNamePath = os.path.dirname(filepath) + '\\text.docx'
     doc.SaveAs(docxNamePath, 12)  # , False, "", True, "", False, False, False, False)
     doc.Close()

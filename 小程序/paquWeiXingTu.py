@@ -6,15 +6,15 @@ import time
 
 import requests
 from selenium import webdriver
-## 导入selenium的浏览器驱动接口
+## 导入 selenium 的浏览器驱动接口
 from selenium.webdriver.common.action_chains import ActionChains
 
-lei = ['FY4A红外', 'FY4A可见光', 'FY4A水汽']
+lei = ['FY4A 红外', 'FY4A 可见光', 'FY4A 水汽']
 bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
 
 #######################################################################################################################
 chrome_driver = 'D:\\chromedriver_win32\\' + 'chromedriver.exe'
-# #chromedriver的文件位置
+# #chromedriver 的文件位置
 driver = webdriver.Chrome(executable_path=chrome_driver)
 # #加载浏览器驱动
 driver.get('http://www.nmc.cn/publish/satellite/FY4A-true-color.htm')
@@ -26,7 +26,7 @@ for lei_i in lei:
     ########################################选择模块######################################################################
     ########### 模拟鼠标选择雷达类型
     button1 = driver.find_element_by_link_text(lei_i)
-    # 通过link文字精确定位元素
+    # 通过 link 文字精确定位元素
     action = ActionChains(driver).move_to_element(button1)
     # 鼠标悬停在一个元素上
     action.click(button1).perform()
@@ -43,7 +43,7 @@ for lei_i in lei:
         img_name_year = img_name[:4]
         img_name_month = img_name[4:6]
         img_name_day = img_name[6:8]
-        img_name_hour = str(int(img_name[8:12]) + 10800)  ###转换成北京时间并且为了小时分钟显示0000这样的格式，加了10800，后面再截取
+        img_name_hour = str(int(img_name[8:12]) + 10800)  ###转换成北京时间并且为了小时分钟显示 0000 这样的格式，加了 10800，后面再截取
 
         #######对日期的处理，有些加了八小时变成北京时间之后，日期会发生改变，下面就是对日期在闰年、非闰年，大小月等情况时的处理
         if int(img_name_hour) > 12400:

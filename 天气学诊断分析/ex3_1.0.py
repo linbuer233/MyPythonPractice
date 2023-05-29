@@ -1,6 +1,6 @@
 '''
-实习三：已知2021年7月17日00时-22日18时北半球的风场(u,v)、高度场(h)、温度场和相对湿度每日四次的等压面资料，
-请利用相关资料求出（东经50-160，北纬10-80）区域内
+实习三：已知 2021 年 7 月 17 日 00 时 -22 日 18 时北半球的风场 (u,v)、高度场 (h)、温度场和相对湿度每日四次的等压面资料，
+请利用相关资料求出（东经 50-160，北纬 10-80）区域内
 （1）垂直速度。
 （2）进行散度和垂直速度的订正（第二种修正方案，其余修正方案可自行选择尝试）。
 当然环流形势分析也是需要的。
@@ -15,7 +15,7 @@ import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import metpy.calc as mpcalc
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import pandas as pd
 import xarray as xr
 from cartopy.io.shapereader import Reader
@@ -26,13 +26,13 @@ plt.rcParams['font.sans-serif'] = ['SimHei']  ###防止无法显示中文并设�
 plt.rcParams['axes.unicode_minus'] = False  ###用来正常显示负号
 
 
-##时间处理,加个八小时
+##时间处理，加个八小时
 def shijianchuli(img_name):
     bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
     img_name_year = img_name[:4]
     img_name_month = img_name[4:6]
     img_name_day = img_name[6:8]
-    img_name_hour = str(int(img_name[8:10]) + 108)  ###转换成北京时间，并且为了小时显示00这样的格式，加了108，后面再截取
+    img_name_hour = str(int(img_name[8:10]) + 108)  ###转换成北京时间，并且为了小时显示 00 这样的格式，加了 108，后面再截取
 
     ####对日期的处理，有些加了八小时变成北京时间之后，日期会发生改变，下面就是对日期在闰年、非闰年，大小月等情况时的处理
     if int(img_name_hour) > 124:
@@ -114,7 +114,7 @@ for var_i in wenjian:
     ##在各个要素文件下遍历，获取创建数组所需的维度大小，除了格点数
     for root, dirs, files in os.walk(wenjian_path):
         ##获取高度层数
-        #####让dirs里高度文件夹按数值大小排序，以防止数据存放到数组里的顺序错误
+        #####让 dirs 里高度文件夹按数值大小排序，以防止数据存放到数组里的顺序错误
         a = np.zeros(len(dirs))
         for i in dirs:
             a[dirs.index(i)] = int(i)
@@ -134,7 +134,7 @@ for var_i in wenjian:
     else:
         hgt_t_uv = np.full((4, len(level) - 1, len(wenjian_timename), NY, NX), 0.000)
 
-########################################################读取数据，os文件遍历################################################
+########################################################读取数据，os 文件遍历################################################
 for var_i in wenjian:
     wenjian_path = 'D:\\python\\tianzhen\\shixi3_4\\data\\' + var_i
     #####设置一个空列表，当作数据存放的中继点
@@ -142,7 +142,7 @@ for var_i in wenjian:
     uv_data = []
     rh_data = []
     for root, dirs, files in os.walk(wenjian_path):
-        #####让dirs里高度文件夹按数值大小排序，以防止数据存放到数组里的顺序错误
+        #####让 dirs 里高度文件夹按数值大小排序，以防止数据存放到数组里的顺序错误
         a = np.zeros(len(dirs))
         for i in dirs:
             a[dirs.index(i)] = int(i)
@@ -150,7 +150,7 @@ for var_i in wenjian:
         for i in b:
             dirs[b.index(i)] = str(int(i))
         """
-        通过改变dirs里值的顺序，进而改root值
+        通过改变 dirs 里值的顺序，进而改 root 值
         dirs / root / files
         ['100', '150', '200', '250', '300', '400', '500', '600', '700', '850', '925', '1000'] D:\python\\tianzhen\shixi3_4\data\hgt []
         [] D:\python\\tianzhen\shixi3_4\data\hgt\\100 ['2021071700.txt', 。。。。]
@@ -160,19 +160,19 @@ for var_i in wenjian:
             for f in files:
                 data = pd.read_csv(os.path.join(root, f), skiprows=3, header=None, sep='\s+')
                 zhongJian = data.values.reshape(2, NY, 80)
-                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=2)  ####去掉末尾的Nan值
+                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=2)  ####去掉末尾的 Nan 值
                 uv_data.append(zhongJian)  #
         if var_i == 'rh':
             for f in files:
                 data = pd.read_csv(os.path.join(root, f), skiprows=4, header=None, sep='\s+')
                 zhongJian = data.values.reshape(NY, 80)
-                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=1)  ####去掉末尾的Nan值
+                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=1)  ####去掉末尾的 Nan 值
                 rh_data.append(zhongJian)  #
         if var_i == 'hgt' or var_i == 't':
             for f in files:
                 data = pd.read_csv(os.path.join(root, f), skiprows=4, header=None, sep='\s+')
                 zhongJian = data.values.reshape(NY, 80)
-                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=1)  ####去掉末尾的Nan值
+                zhongJian = np.delete(zhongJian, list(range(NX, 80)), axis=1)  ####去掉末尾的 Nan 值
                 hgt_t_data.append(zhongJian)  #
     if var_i == 'uv':
         uv_data_array = np.array(uv_data)
@@ -191,7 +191,7 @@ for var_i in wenjian:
         hgt_t_data_array = hgt_t_data_array[::-1, :, ::-1, :]  ###反转高度轴和维度轴
         hgt_t_uv[wenjian.index(var_i), :, :, :, :] = hgt_t_data_array
 print(wenjian_timename)
-###################################################存放到nc文件中#########################################################
+###################################################存放到 nc 文件中#########################################################
 starttime = wenjian_timename[0]
 starttime = starttime[:-2]
 endtime = wenjian_timename[-1]
@@ -241,11 +241,11 @@ lons = ds['lon'][:]
 lats = ds['lat'][:]
 levels = ds['level'][:]
 time = ds['time'][:]
-uwind = ds['u'][:, :, :, :]  ##高度|时间|维度|经度
-vwind = ds['v'][:, :, :, :]  ##高度|时间|维度|经度
-hgt = ds['hgt'][:, :, :, :]  ##高度|时间|维度|经度
-Temp = ds['t'][:, :, :, :]  ##高度|时间|维度|经度
-##给个单位,防止metpy计算报错
+uwind = ds['u'][:, :, :, :]  ##高度 | 时间 | 维度 | 经度
+vwind = ds['v'][:, :, :, :]  ##高度 | 时间 | 维度 | 经度
+hgt = ds['hgt'][:, :, :, :]  ##高度 | 时间 | 维度 | 经度
+Temp = ds['t'][:, :, :, :]  ##高度 | 时间 | 维度 | 经度
+##给个单位，防止 metpy 计算报错
 lons = lons * units.degrees_east
 lats = lats * units.degrees_north
 uwind = uwind * (units.m / units.s)
@@ -259,7 +259,7 @@ lat2, level2 = np.meshgrid(lats, levels)  ##画经向剖面图用
 level_uv = list(levels.data)
 Pcha = []  ##相邻两层的气压差
 for i in range(len(level_uv) - 1):
-    Pcha.append((level_uv[i + 1] - level_uv[i]) * (-100))  ###翻转，从地面相邻两层开始，并转成Pa
+    Pcha.append((level_uv[i + 1] - level_uv[i]) * (-100))  ###翻转，从地面相邻两层开始，并转成 Pa
 div = np.zeros((len(level_uv), hgt_t_uv.shape[2], NY, NX))
 div_Xiu = np.zeros((len(level_uv), hgt_t_uv.shape[2], NY, NX))
 W_speed = np.zeros((len(level_uv), hgt_t_uv.shape[2], NY, NX))
@@ -268,13 +268,13 @@ for time_i in range(hgt_t_uv.shape[2]):
     for h_i in range(len(level_uv)):
         ##计算散度 1/s
         div[h_i, time_i:, :] = mpcalc.divergence(uwind[h_i, time_i, :, :], vwind[h_i, time_i, :, :], dx=dx[:, :],
-                                                 dy=dy[:, :])  # metpy公式
+                                                 dy=dy[:, :])  # metpy 公式
 ##计算垂直速度  单位Pa/s
 for time_i in range(hgt_t_uv.shape[2]):
     for h_i in range(1, len(level_uv)):
         W_speed[h_i, time_i, :, :] = W_speed[h_i - 1, time_i, :, :] + 0.5 * (
                 div[h_i, time_i, :, :] + div[h_i - 1, time_i, :, :]) * Pcha[h_i - 1]  ##公式
-##修正方案二修正垂直速度,散度 单位Pa/s
+##修正方案二修正垂直速度，散度 单位Pa/s
 for time_i in range(hgt_t_uv.shape[2]):
     for h_i in range(len(level_uv) - 1):
         W_speed_Xiu[h_i, time_i, :, :] = W_speed[h_i, time_i, :, :] - h_i * (h_i + 1) / (
@@ -286,7 +286,7 @@ wodu = np.zeros((len(level_uv), hgt_t_uv.shape[2], NY, NX))
 for time_i in range(hgt_t_uv.shape[2]):
     for h_i in range(len(level_uv)):
         wodu[h_i, time_i, :, :] = mpcalc.vorticity(uwind[h_i, time_i, :, :], vwind[h_i, time_i, :, :], dx=dx[:, :],
-                                                   dy=dy[:, :])  # metpy公式
+                                                   dy=dy[:, :])  # metpy 公式
 
 ##设定一些常量
 Rd = 287  # J/(K*kg)
@@ -294,9 +294,9 @@ L = 2.5 * 10 ** 6  # J/kg
 Cp = 1004  # J/(K*kg)
 a = 17.2693882
 b = 35.86
-##读取rh
+##读取 rh
 RH = xr.open_dataset(r'D:\python\tianzhen\shixi3_4\ds_rh.nc')
-Theta_rh = RH['rh'][:, :, :, :]  ###高度|时间|维度|经度
+Theta_rh = RH['rh'][:, :, :, :]  ###高度 | 时间 | 维度 | 经度
 rh_level = RH['level'][:]
 rh_P = []
 for i in rh_level:
@@ -356,14 +356,14 @@ for h_i in range(len(wodu_level)):
         ax.set_title(titlename)
         ax.grid()
         plt.tight_layout()###让图填充整个画布
-        picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\涡度-位势场\\' + wodu_level[h_i]
+        picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\涡度 - 位势场\\' + wodu_level[h_i]
         if not os.path.exists(picturepath):##判断文件夹是否存在，不存在就创建一个新的
             os.makedirs(picturepath)
         picturename = picturepath + '\\' + titlename + '.png'
         plt.savefig(picturename)
         plt.close()
 
-###假相当位温与垂直速度修正的剖面图 各个时次，经向剖面图112.5E
+###假相当位温与垂直速度修正的剖面图 各个时次，经向剖面图 112.5E
 Thetase_jiange = np.arange(-1000, 1500, 8)
 for time_i in range(len(rh_time)):
     fig = plt.figure(figsize=(9, 6))
@@ -393,7 +393,7 @@ for time_i in range(len(rh_time)):
     picturename = picturepath + '\\' + titlename + '.png'
     plt.savefig(picturename)
     plt.close()
-###假相当位温与垂直速度修正的剖面图 各个时次，维向剖面图35N
+###假相当位温与垂直速度修正的剖面图 各个时次，维向剖面图 35N
 for time_i in range(len(rh_time)):
     fig = plt.figure(figsize=(9, 6))
     ax = fig.subplots(1, 1)
@@ -425,7 +425,7 @@ for time_i in range(len(rh_time)):
     plt.close()
 '''
 '''
-###环流形势500hPa，850hPa，地面
+###环流形势 500hPa，850hPa，地面
 huangliu_Jiange = np.arange(-1000, 1500, 4)
 huanliugaodu = [1000, 850, 500]
 for h_i in huanliugaodu:
@@ -468,7 +468,7 @@ for i in wenjian_timename:
         count = 1
 
 hight_Wspeed = 500
-###2021年7月19日00时-22日18时 500hPa 垂直速度
+###2021 年 7 月 19 日 00 时 -22 日 18 时 500hPa 垂直速度
 for time_i in time_Wspeed:
     ax, fig = createmap()
     colorbar = ax.contourf(lons, lats, W_speed[level_uv.index(hight_Wspeed), wenjian_timename.index(time_i), :, :],
@@ -484,7 +484,7 @@ for time_i in time_Wspeed:
     picturename = picturepath + '\\' + titlename + '.png'
     plt.savefig(picturename)
     plt.close()
-###2021年7月19日00时-22日18时 500hPa 垂直速度修正
+###2021 年 7 月 19 日 00 时 -22 日 18 时 500hPa 垂直速度修正
 for time_i in time_Wspeed:
     ax, fig = createmap()
     colorbar = ax.contourf(lons, lats, W_speed_Xiu[level_uv.index(hight_Wspeed), wenjian_timename.index(time_i), :, :],
@@ -501,7 +501,7 @@ for time_i in time_Wspeed:
     plt.savefig(picturename)
     plt.close()
 
-###2021年7月19日00时-22日18时 500hPa 散度 35N 垂直剖面
+###2021 年 7 月 19 日 00 时 -22 日 18 时 500hPa 散度 35N 垂直剖面
 for time_i in time_Wspeed:
     fig = plt.figure(figsize=(9, 6))
     ax = fig.subplots(1, 1)
@@ -541,7 +541,7 @@ for i in wenjian_timename:
 hight_5 = 200
 denghgtlines_Jiange = np.arange(-1000, 1500, 4)
 
-###2021年7月20日00时-22日18时 200hPa 位势高度场，风场，高空急流（填色，>=30m/s)
+###2021 年 7 月 20 日 00 时 -22 日 18 时 200hPa 位势高度场，风场，高空急流（填色，>=30m/s)
 for time_i in time_5:
     ax, fig = createmap()
     dengHGTlines = ax.contour(lons, lats, hgt[level_uv.index(hight_5), wenjian_timename.index(time_i), :, :],
@@ -570,7 +570,7 @@ for time_i in time_5:
     ax.set_title(titlename)
     ax.grid()
     plt.tight_layout()  ###让图填充整个画布
-    picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\实习三5问'
+    picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\实习三 5 问'
     if not os.path.exists(picturepath):  ##判断文件夹是否存在，不存在就创建一个新的
         os.makedirs(picturepath)
     picturename = picturepath + '\\' + titlename + '.png'
@@ -633,7 +633,7 @@ for h_i in shuiqitongliang_level:
                                                                                                     h_i),
                                                                                                 time_i, :, :])  # g/g
 
-###W-v流场，叠加水汽经向剖面图,112.5E
+###W-v 流场，叠加水汽经向剖面图，112.5E
 for time_i in range(len(time)):
     fig = plt.figure(figsize=(9, 6))
     ax = fig.subplots(1, 1)
@@ -651,17 +651,17 @@ for time_i in range(len(time)):
     ##暴力显示
     plt.yticks([1000, 900, 800, 700, 600, 500, 400, 300], ["1000", "900", "800", "700", "600", "500", "400", "300"])
     ax.set_ylabel('hPa')
-    titlename = shijianchuli(wenjian_timename[time_i]) + '时W-v流场，叠加水汽经向剖面图'
+    titlename = shijianchuli(wenjian_timename[time_i]) + '时 W-v 流场，叠加水汽经向剖面图'
     ax.set_title(titlename)
     ax.grid()
     plt.tight_layout()###让图填充整个画布
-    picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\W-v流场，叠加水汽经向剖面图\\'
+    picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\W-v 流场，叠加水汽经向剖面图\\'
     if not os.path.exists(picturepath):##判断文件夹是否存在，不存在就创建一个新的
         os.makedirs(picturepath)
     picturename = picturepath + '\\' + titlename + '.png'
     plt.savefig(picturename)
     plt.close()
-###W-u流场，叠加水汽经向剖面图,35N
+###W-u 流场，叠加水汽经向剖面图，35N
 for time_i in range(len(time)):
     fig = plt.figure(figsize=(9, 6))
     ax = fig.subplots(1, 1)
@@ -679,11 +679,11 @@ for time_i in range(len(time)):
     ##暴力显示
     plt.yticks([1000, 900, 800, 700, 600, 500, 400, 300], ["1000", "900", "800", "700", "600", "500", "400", "300"])
     ax.set_ylabel('hPa')
-    titlename = shijianchuli(wenjian_timename[time_i]) + '时W-u流场，叠加水汽维向剖面图'
+    titlename = shijianchuli(wenjian_timename[time_i]) + '时 W-u 流场，叠加水汽维向剖面图'
     ax.set_title(titlename)
     ax.grid()
     plt.tight_layout()###让图填充整个画布
-    picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\W-u流场，叠加水汽维向剖面图\\'
+    picturepath = 'D:\\python\\tianzhen\\shixi3_4\\picture\\W-u 流场，叠加水汽维向剖面图\\'
     if not os.path.exists(picturepath):##判断文件夹是否存在，不存在就创建一个新的
         os.makedirs(picturepath)
     picturename = picturepath + '\\' + titlename + '.png'
@@ -692,7 +692,7 @@ for time_i in range(len(time)):
 
 '''
 '''
-（时间从2021年7月19日-22日18时，经度从100-125E）
+（时间从 2021 年 7 月 19 日 -22 日 18 时，经度从 100-125E）
 '''
 '''
 ex45_level = 850
@@ -703,7 +703,7 @@ for i in wenjian_timename:
         ex45_time.append(i)
         count = 1
 
-###850hPa水汽通量散度
+###850hPa 水汽通量散度
 fig = plt.figure(figsize=(9, 6))
 ax = fig.subplots(1, 1)
 div_shuiqi = np.zeros((rh.shape[0], rh.shape[1], rh.shape[2], rh.shape[3]))
@@ -725,10 +725,10 @@ plt.colorbar()
 #####横坐标显示经度
 lon_formatter = LongitudeFormatter(zero_direction_label=False)
 ax.xaxis.set_major_formatter(lon_formatter)
-ax.set_title('shixi45_850hPa水汽通量散度')
+ax.set_title('shixi45_850hPa 水汽通量散度')
 ax.grid()
 plt.tight_layout()###让图填充整个画布
-plt.savefig('D:\\python\\tianzhen\\shixi3_4\\picture\\shixi45_850hPa水汽通量散度.png')
+plt.savefig('D:\\python\\tianzhen\\shixi3_4\\picture\\shixi45_850hPa 水汽通量散度.png')
 plt.close()
 
 ###风的散度
@@ -742,10 +742,10 @@ plt.colorbar()
 #####横坐标显示经度
 lon_formatter = LongitudeFormatter(zero_direction_label=False)
 ax.xaxis.set_major_formatter(lon_formatter)
-ax.set_title('shixi45_850hPa风散度')
+ax.set_title('shixi45_850hPa 风散度')
 ax.grid()
 plt.tight_layout()###让图填充整个画布
-plt.savefig('D:\\python\\tianzhen\\shixi3_4\\picture\\shixi45_850hPa风散度.png')
+plt.savefig('D:\\python\\tianzhen\\shixi3_4\\picture\\shixi45_850hPa 风散度.png')
 plt.close()
 
 ###水汽通量平流
@@ -770,9 +770,9 @@ plt.colorbar()
 #####横坐标显示经度
 lon_formatter = LongitudeFormatter(zero_direction_label=False)
 ax.xaxis.set_major_formatter(lon_formatter)
-ax.set_title('shixi45_850hPa水汽通量平流')
+ax.set_title('shixi45_850hPa 水汽通量平流')
 ax.grid()
 plt.tight_layout()###让图填充整个画布
-plt.savefig('D:\\python\\tianzhen\\shixi3_4\\picture\\shixi45_850hPa水汽通量平流.png')
+plt.savefig('D:\\python\\tianzhen\\shixi3_4\\picture\\shixi45_850hPa 水汽通量平流.png')
 plt.close()
 '''

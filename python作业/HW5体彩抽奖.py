@@ -5,14 +5,14 @@ import pandas as pd
 
 
 def readnum():
-    fd = pd.read_excel('体彩大乐透-问卷统计详情.xlsx')
+    fd = pd.read_excel('体彩大乐透 - 问卷统计详情.xlsx')
     name = fd.iloc[5:, 0].values
     f5 = fd.iloc[5:, 8].values
     b2 = fd.iloc[5:, 9].values
     return name, f5, b2
 
 
-# 返回bool列表，方便后续去除数字不够，网址的同学
+# 返回 bool 列表，方便后续去除数字不够，网址的同学
 def TFfun(df, string, num):
     alist = []
     for i in df[string]:
@@ -150,8 +150,8 @@ if __name__ == '__main__':
     name, f5, b2 = readnum()
 
     df = pd.DataFrame({'姓名': name, '前五个数字': f5, '后两个数字': b2})
-    df = df.dropna()  # 去除Nan值
-    ## 去除nan值之后，重置顺序
+    df = df.dropna()  # 去除 Nan 值
+    ## 去除 nan 值之后，重置顺序
     df = pd.DataFrame(
         {'姓名': list(df['姓名']), '前五个数字': list(df['前五个数字']), '后两个数字': list(df['后两个数字'])})
 
@@ -174,16 +174,16 @@ if __name__ == '__main__':
     list5 = coulist1(newdf, '前五个数字')
     list2 = coulist1(newdf, '后两个数字')
 
-    # 把list5 的元素转成整型
+    # 把 list5 的元素转成整型
     for i in range(len(list5[0][:])):
         for j in range(len(list5)):
             list5[j][i] = int(list5[j][i])
-    # 把list2 的元素转成整型
+    # 把 list2 的元素转成整型
     for i in range(len(list2[0][:])):
         for j in range(len(list2)):
             list2[j][i] = int(list2[j][i])
 
-    # 重新生成一个DataFrame
+    # 重新生成一个 DataFrame
     coujiang = pd.DataFrame({'name': list(newdf['姓名']), 'f5': list5, 'b2': list2})
 
     # 创建一个计数器，再把它添加到一个列表中，再拿另外一个列表放名字，通过元素的位置来区分，每人的中奖情况
@@ -199,7 +199,7 @@ if __name__ == '__main__':
                 zhongjiangmingdan(ZJname, ZJlist, coujiang.loc[i]['f5'], coujiang.loc[i]['b2'],
                                   coujiang.loc[i]['name'])
 
-    # 把中奖结果放到dataframe
+    # 把中奖结果放到 dataframe
     ds1 = pd.DataFrame.from_dict(ZJlist[:])
     namedf = pd.DataFrame({'姓名': ZJname})
     ds2 = ds1.join(namedf)

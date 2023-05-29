@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import metpy.calc as mpcalc
 import metpy.constants as constants
-import numpy as np  # 调用numpy
+import numpy as np  # 调用 numpy
 import pandas as pd
 import xarray as xr
 from cartopy.io.shapereader import Reader
@@ -19,13 +19,13 @@ plt.rcParams['font.sans-serif'] = ['SimHei']  ###防止无法显示中文并设�
 plt.rcParams['axes.unicode_minus'] = False  ###用来正常显示负号
 
 
-##时间处理,加个八小时
+##时间处理，加个八小时
 def shijianchuli(img_name):
     bigmonth = ['01', '03', '04', '05', '07', '08', '10', '12']
     img_name_year = img_name[:4]
     img_name_month = img_name[4:6]
     img_name_day = img_name[6:8]
-    img_name_hour = str(int(img_name[8:10]) + 108)  ###转换成北京时间，并且为了小时显示00这样的格式，加了108，后面再截取
+    img_name_hour = str(int(img_name[8:10]) + 108)  ###转换成北京时间，并且为了小时显示 00 这样的格式，加了 108，后面再截取
 
     ####对日期的处理，有些加了八小时变成北京时间之后，日期会发生改变，下面就是对日期在闰年、非闰年，大小月等情况时的处理
     if int(img_name_hour) > 124:
@@ -120,7 +120,7 @@ es = np.zeros((len(lat), len(lon)))
 e0 = np.zeros((len(lat), len(lon)))
 e = np.zeros((len(lat), len(lon)))
 Td0 = np.zeros((len(lat), len(lon)))
-###计算露点温度，运行时间过长，所以只运行一次，创建nc文件后注释掉
+###计算露点温度，运行时间过长，所以只运行一次，创建 nc 文件后注释掉
 '''
 for h_i in range(len(level)):
     for time_i in range(len(time)):
@@ -175,7 +175,7 @@ ds_weiwen = xr.Dataset({'weiwen': (['level', 'time', 'lat', 'lon'], weiwen),
                                })
 ds_weiwen.to_netcdf('D:\\python\\tianzhen\\shixi3_4\\ds_weiwen.nc')
 '''  ##同理
-##计算位势稳定度，k指数
+##计算位势稳定度，k 指数
 for h_i in range(len(level)):
     for time_i in range(len(time)):
         for j in range(len(lat)):
@@ -199,9 +199,9 @@ for time_i in range(len(time)):
 weiwenall = xr.open_dataset('D:\\python\\tianzhen\\shixi3_4\\ds_weiwen.nc')
 weiwen = weiwenall['weiwen'][:, :, :, :]
 xiangdangweiwen = weiwenall['xiangdangweiwen'][:, :, :, :]
-##新创建一个时间序列，方便给图片命名，nc文件中的时间序列弄错了
+##新创建一个时间序列，方便给图片命名，nc 文件中的时间序列弄错了
 t1 = pd.date_range(start='20210717', periods=24, freq='6H')  ##用于给图片命名
-t2 = pd.date_range(start='2021-07-17 08', periods=24, freq='6H')  ##方便画位温，相当位温给时间轴加8小时，由于中间有空格，无法用于图片命名
+t2 = pd.date_range(start='2021-07-17 08', periods=24, freq='6H')  ##方便画位温，相当位温给时间轴加 8 小时，由于中间有空格，无法用于图片命名
 time1 = np.zeros((len(t1)))
 for t_i in range(len(t1)):
     a = str(t1[t_i])
@@ -228,7 +228,7 @@ titlename = '位温时间——高度剖面图'
 ax.set_title(titlename)
 ax.grid()
 plt.tight_layout()  ##让图填充到整个画布
-picturepath = 'D:\\python\\tianzhen\\shixi3_4\\ex5picture\\位温时间-高度剖面图'
+picturepath = 'D:\\python\\tianzhen\\shixi3_4\\ex5picture\\位温时间 - 高度剖面图'
 if not os.path.exists(picturepath):  ##判断文件夹是否存在，不存在就创建一个新的
     os.makedirs(picturepath)
 picturename = picturepath + '\\' + titlename + '.png'
@@ -255,14 +255,14 @@ titlename = '相当位温时间——高度剖面图'
 ax.set_title(titlename)
 ax.grid()
 plt.tight_layout()  ##让图填充到整个画布
-picturepath = 'D:\\python\\tianzhen\\shixi3_4\\ex5picture\\相当位温时间-高度剖面图'
+picturepath = 'D:\\python\\tianzhen\\shixi3_4\\ex5picture\\相当位温时间 - 高度剖面图'
 if not os.path.exists(picturepath):  ##判断文件夹是否存在，不存在就创建一个新的
     os.makedirs(picturepath)
 picturename = picturepath + '\\' + titlename + '.png'
 plt.savefig(picturename)
 plt.close()
 
-# K指数
+# K 指数
 for t_i in range(len(time1)):
     ax, fig = createmap()
     ###按照课本出现的雷暴关系进行分割色块
@@ -271,7 +271,7 @@ for t_i in range(len(time1)):
                            extend='both',
                            transform=ccrs.PlateCarree())
     plt.colorbar(colorbar, extendrect='True', pad=0.03, fraction=0.04, shrink=1)
-    titlename = str(time1[t_i]) + '时K指数分布场'
+    titlename = str(time1[t_i]) + '时 K 指数分布场'
     ax.set_title(titlename)
     ax.grid()
     plt.tight_layout()  ###让图填充整个画布
@@ -282,17 +282,17 @@ for t_i in range(len(time1)):
     plt.savefig(picturename)
     plt.close()
 
-##Ec指数
+##Ec 指数
 for t_i in range(len(time1)):
     for h_i in range(len(level)):
         ax, fig = createmap()
         colorbar = ax.contourf(lon, lat, Ec[h_i, t_i, :, :], cmap='bwr', transform=ccrs.PlateCarree())
         plt.colorbar(colorbar, extendrect='True', pad=0.03, fraction=0.04, shrink=1)
-        titlename = str(time1[t_i]) + str(level[h_i].data) + 'Ec指数分布场'
+        titlename = str(time1[t_i]) + str(level[h_i].data) + 'Ec 指数分布场'
         ax.set_title(titlename)
         ax.grid()
         plt.tight_layout()  ###让图填充整个画布
-        picturepath = 'D:\\python\\tianzhen\\shixi3_4\\ex5picture\\Ec指数分布图\\' + str(level[h_i].data)
+        picturepath = 'D:\\python\\tianzhen\\shixi3_4\\ex5picture\\Ec 指数分布图\\' + str(level[h_i].data)
         if not os.path.exists(picturepath):  ##判断文件夹是否存在，不存在就创建一个新的
             os.makedirs(picturepath)
         picturename = picturepath + '\\' + titlename + '.png'
