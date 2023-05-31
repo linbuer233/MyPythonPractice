@@ -12,6 +12,7 @@ for i in range(1979,2023,1):
     if os.path.exists(os.path.join(PATH,file_name)):
         continue
     print("下载\t",file_name)
-    
+    ###########核心代码############
     wget.download(url,out = os.path.join(PATH,file_name))
+    ###############################
     print("\n")
