@@ -1,5 +1,5 @@
-# pythonlianxi
-# 记录大学 python 小程序和作业
+![MyPythonPractice](https://socialify.git.ci/linbuer233/MyPythonPractice/image?description=1&descriptionEditable=%E8%AE%B0%E5%BD%95%E5%A4%A7%E5%AD%A6%20python%20%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%92%8C%E4%BD%9C%E4%B8%9A&font=Inter&logo=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F94788509%3Fv%3D4&name=1&pattern=Overlapping%20Hexagons&stargazers=1&theme=Light)
+
 
 **项目结构**
 
