@@ -398,7 +398,7 @@ def convert_data():
 
 
 (
-    BMap(init_opts=opts.InitOpts(width="1200px", height="800px"))
+    BMap(init_opts=opts.InitOpts(width="1600px", height="800px"))
     .add(
         type_="effectScatter",
         series_name="pm2.5",
@@ -514,7 +514,7 @@ def convert_data():
             subtitle="data from PM25.in",
             subtitle_link="http://www.pm25.in",
             pos_left="center",
-            title_textstyle_opts=opts.TextStyleOpts(color="#fff"),
+            title_textstyle_opts=opts.TextStyleOpts(color="#1a5787"),
         ),
         tooltip_opts=opts.TooltipOpts(trigger="item"),
     )
