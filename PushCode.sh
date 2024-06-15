@@ -9,4 +9,4 @@ git add ./
 git commit -m "Commit on $today"
 
 # 执行git push命令
-git push
+git push -f
